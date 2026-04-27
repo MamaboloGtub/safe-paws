@@ -6,19 +6,108 @@
     <title>Enquiry</title>
 </head>
 <body>
-    <h1>Enquiry Form</h1>
-    <form action="#" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="enquiry">Enquiry:</label>
-        <textarea id="enquiry" name="enquiry" required></textarea>
-        <br>
-        <button type="submit">Submit</button>
-    </form>
+    <header>
+        <p><a href="#main-content">Skip to main content</a></p>
+        <img src="images/SafePaws_logo.png" alt="Safe Paws Logo" height="120" width="180">
+        <nav aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="adoption.html">Adoption</a>
+            <a href="contact.html">Contact</a>
+            <a href="faq.html">FAQ</a>
+        </nav>
+        <hr>
+    </header>
 
+    <main id="main-content">
+        <h1>General Enquiry Form</h1>
+        <p>Have a question about our animals, services, or how to get involved? Please fill out the form below and we'll respond as soon as possible.</p>
+
+        <form action="#" method="post">
+            <fieldset>
+                <legend>Contact Information</legend>
+                <p>
+                    <label for="fullname">Full Name: <span aria-label="required">*</span></label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </p>
+                <p>
+                    <label for="email">Email Address: <span aria-label="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </p>
+                <p>
+                    <label for="phone">Phone Number: <span aria-label="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9\s\-\+]+" required>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Enquiry Details</legend>
+                <p>
+                    <label for="enquiry-type">What is your enquiry about? <span aria-label="required">*</span></label>
+                    <select id="enquiry-type" name="enquiryType" required>
+                        <option value="">Select one</option>
+                        <option value="general">General Question</option>
+                        <option value="animal">Question about a specific animal</option>
+                        <option value="adoption">Adoption process</option>
+                        <option value="volunteer">Volunteering opportunities</option>
+                        <option value="foster">Foster care</option>
+                        <option value="donation">Donation and support</option>
+                        <option value="feedback">Feedback or complaint</option>
+                        <option value="other">Other</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="animal-name">If your enquiry is about a specific animal, which one?</label>
+                    <input type="text" id="animal-name" name="animalName" placeholder="E.g., Buddy, Mittens, Hoppy">
+                </p>
+                <p>
+                    <label for="message">Your Message: <span aria-label="required">*</span></label>
+                    <textarea id="message" name="message" rows="6" placeholder="Please provide details about your enquiry..." required></textarea>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Preferred Contact Method</legend>
+                <p>How would you prefer us to contact you?</p>
+                <p>
+                    <input type="radio" id="contact-email" name="contactMethod" value="email">
+                    <label for="contact-email">Email</label>
+                </p>
+                <p>
+                    <input type="radio" id="contact-phone" name="contactMethod" value="phone">
+                    <label for="contact-phone">Phone</label>
+                </p>
+                <p>
+                    <input type="radio" id="contact-either" name="contactMethod" value="either" checked>
+                    <label for="contact-either">Either (your choice)</label>
+                </p>
+            </fieldset>
+
+            <p>
+                <button type="submit">Submit Enquiry</button>
+                <button type="reset">Clear Form</button>
+            </p>
+        </form>
+
+        <hr>
+
+        <section aria-labelledby="thanks-title">
+            <h2 id="thanks-title">Thank You</h2>
+            <p>Thank you for your interest in Safe Paws! We appreciate all enquiries and will respond within 24-48 hours during business days. If you have an urgent matter, please call us directly at <a href="tel:+27110000000">+27 11 000 0000</a>.</p>
+            <p>In the meantime, feel free to explore our <a href="adoption.html">adoption page</a> or check out our <a href="faq.html">frequently asked questions</a>.</p>
+        </section>
+    </main>
+
+    <footer>
+        <hr>
+        <p><strong>Footer</strong></p>
+        <p>&copy; 2026 Safe Paws. All rights reserved.</p>
+        <address>
+            <p><strong>Email:</strong> <a href="mailto:info@safepaws.example">info@safepaws.example</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+27110000000">+27 11 000 0000</a></p>
+            <p><strong>Address:</strong> Safe Paws Rescue Center, Johannesburg, South Africa</p>
+        </address>
+        <p><a href="index.html">Home</a> | <a href="about.html">About</a> | <a href="adoption.html">Adoption</a> | <a href="faq.html">FAQ</a></p>
+    </footer>
 </body>
 </html>
