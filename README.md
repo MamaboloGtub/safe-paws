@@ -13,7 +13,7 @@ School Portfolio of Evidence Website Project
 
 This repository contains the Safe Paws pet adoption website developed for a school assignment.
 
-- Part 1 Due Date: 28 April 2026
+- ~~Part 1 Due Date: 28 April 2026~~
 - Part 2 Due Date: 29 May 2026
 - POE Due Date: 19 June 2026
 
