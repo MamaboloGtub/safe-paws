@@ -4,80 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css">
     <title>Safe Paws</title>
 </head>
 <body>
-    <header>
+    <div class="container">
+    <header class="navbar">
         <p><a href="#main-content">Skip to main content</a></p>
-        <img src="./images/SafePaws_Logo.png" alt="Safe Paws Logo" height="120" width="180">
+        <img src="./images/SafePaws_Logo.png" alt="Safe Paws Logo" height="120" width="180" class="logo">
         <nav aria-label="Main navigation">
-            <a href="index.html" aria-current="page">Home</a>
-            <a href="about.html">About</a>
-            <a href="adoption.html">Adoption</a>
-            <a href="contact.html">Contact</a>
-            <a href="faq.html">FAQ</a>
+            <ul>
+                <li><a href="index.html" aria-current="page">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="adoption.html">Adoption</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
         </nav>
-        <hr>
     </header>
 
     <main id="main-content">
         <section id="hero" aria-labelledby="hero-title">
             <h1 id="hero-title">Hero Section</h1>
             <p>Adopt a Pet!</p>
-            <p><a href="adoption.html">Adopt Now</a></p>
+            <p><a href="adoption.html"><button type="button">Adopt Now</button></a></p>
         </section>
 
-        <hr>
-
         <section id="featured-animals" aria-labelledby="featured-title">
-            <h2 id="featured-title">Featured Animals</h2>
+            <h2 id="featured-title" class="section-title">Featured Animals</h2>
 
-            <article>
-                <h3>Animal Card 1</h3>
-                <figure>
-                    <img src="./images/dogs/dachshund.jpg" alt="Young dachshund waiting for adoption" width="200" height="200">
-                    <figcaption>Dachshund, 1 year old</figcaption>
-                </figure>
-                <details>
-                    <summary>View details</summary>
-                    <p>Friendly and playful. Good with children.</p>
-                    <p><a href="enquiry.html">Enquire about this pet</a></p>
-                </details>
-            </article>
+            <div class="cards">
+                <article class="card">
+                    <h3>Animal Card 1</h3>
+                    <figure>
+                        <img src="./images/dogs/dachshund.jpg" alt="Young dachshund waiting for adoption" width="200" height="200">
+                        <figcaption>Dachshund, 1 year old</figcaption>
+                    </figure>
+                    <details>
+                        <summary>View details</summary>
+                        <p>Friendly and playful. Good with children.</p>
+                        <p><a href="enquiry.html">Enquire about this pet</a></p>
+                    </details>
+                </article>
 
-            <article>
-                <h3>Animal Card 2</h3>
-                <figure>
-                    <img src="./images/cats/annabel.jpg" alt="Calm cat available for adoption" width="200" height="200">
-                    <figcaption>Annabel, 2 years old</figcaption>
-                </figure>
-                <details>
-                    <summary>View details</summary>
-                    <p>Calm and affectionate indoor companion.</p>
-                    <p><a href="enquiry.html">Enquire about this pet</a></p>
-                </details>
-            </article>
+                <article class="card">
+                    <h3>Animal Card 2</h3>
+                    <figure>
+                        <img src="./images/cats/annabel.jpg" alt="Calm cat available for adoption" width="200" height="200">
+                        <figcaption>Annabel, 2 years old</figcaption>
+                    </figure>
+                    <details>
+                        <summary>View details</summary>
+                        <p>Calm and affectionate indoor companion.</p>
+                        <p><a href="enquiry.html">Enquire about this pet</a></p>
+                    </details>
+                </article>
 
-            <article>
-                <h3>Animal Card 3</h3>
-                <figure>
-                    <img src="./images/hamster_rabbit/janan.jpg" alt="Small rabbit looking at the camera" width="200" height="200">
-                    <figcaption>Snow, 8 months old</figcaption>
-                </figure>
-                <details>
-                    <summary>View details</summary>
-                    <p>Gentle rabbit, suitable for small families.</p>
-                    <p><a href="enquiry.html">Enquire about this pet</a></p>
-                </details>
-            </article>
+                <article class="card">
+                    <h3>Animal Card 3</h3>
+                    <figure>
+                        <img src="./images/hamster_rabbit/janan.jpg" alt="Small rabbit looking at the camera" width="200" height="200">
+                        <figcaption>Snow, 8 months old</figcaption>
+                    </figure>
+                    <details>
+                        <summary>View details</summary>
+                        <p>Gentle rabbit, suitable for small families.</p>
+                        <p><a href="enquiry.html">Enquire about this pet</a></p>
+                    </details>
+                </article>
+            </div>
 
             <p><a href="adoption.html">See all animals available for adoption</a></p>
         </section>
 
-        <hr>
-
         <section id="browse-by-type" aria-labelledby="browse-by-type-title">
-            <h2 id="browse-by-type-title">Browse More Pets by Type</h2>
+            <h2 id="browse-by-type-title" class="section-title">Browse More Pets by Type</h2>
             <p>Choose from the folders below and view more pets on the home page.</p>
 
             <section aria-labelledby="dogs-title">
@@ -148,7 +149,7 @@
                 </article>
                 <article>
                     <figure>
-                        <img src="./images/hamster_rabbit/stockvaul_rabbit.jpg" alt="Rabbit profile image" width="200" height="200">
+                        <img src="./images/hamster_rabbit/stockvaul_rabbit.jpg" alt="Rabbit profile" width="200" height="200">
                         <figcaption>Snowball</figcaption>
                     </figure>
                     <p><a href="enquiry.html">Enquire about this rabbit</a></p>
@@ -158,10 +159,8 @@
             <p><a href="adoption.html">Open the full adoption page</a></p>
         </section>
 
-        <hr>
-
-        <section id="about-preview" aria-labelledby="about-preview-title">
-            <h2 id="about-preview-title">About Us Preview</h2>
+        <section id="about-preview" aria-labelledby="about-preview-title" class="about">
+            <h2 id="about-preview-title" class="section-title">About Us Preview</h2>
             <p>
                 Safe Paws is a community pet adoption center focused on helping rescued animals find loving homes.
                 We support responsible adoption and provide guidance before and after adoption.
@@ -169,10 +168,8 @@
             <p><a href="about.html">Read more about Safe Paws</a></p>
         </section>
 
-        <hr>
-
         <section id="quick-enquiry" aria-labelledby="quick-enquiry-title">
-            <h2 id="quick-enquiry-title">Quick Enquiry</h2>
+            <h2 id="quick-enquiry-title" class="section-title">Quick Enquiry</h2>
             <form action="enquiry.html" method="get">
                 <p>
                     <label for="pet-type">Pet Type:</label>
@@ -185,7 +182,7 @@
                 </p>
                 <p>
                     <label for="full-name">Your Name:</label>
-                    <input type="text" id="full-name" name="fullName" required>
+                    <input type="text" id="full-name" name="fullName" placeholder="enter you name" required>
                 </p>
                 <p>
                     <label for="email">Email:</label>
@@ -198,13 +195,13 @@
         </section>
     </main>
 
-    <footer>
-        <hr>
+    <footer class="footer">
         <p>Footer</p>
         <p>&copy; 2026 Safe Paws. All rights reserved.</p>
         <p>Email: <a href="mailto:info@safepaws.example">info@safepaws.example</a></p>
         <p>Phone: <a href="tel:+27110000000">+27 11 000 0000</a></p>
         <p><a href="contact.html">Contact page</a></p>
     </footer>
+    </div>
 </body>
 </html>
