@@ -173,8 +173,9 @@ main.page-layout {
 ========================= */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  gap: 24px;
   background: var(--white);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
@@ -185,12 +186,20 @@ main.page-layout {
 .navbar .logo {
   font-weight: bold;
   color: var(--primary-blue);
+  flex-shrink: 0;
+}
+
+.navbar nav {
+  flex: 1;
 }
 
 .navbar ul {
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   list-style: none;
-  gap: 20px;
+  gap: 12px;
+  width: 100%;
 }
 
 .navbar a {
@@ -321,12 +330,16 @@ button:hover {
    FOOTER
 ========================= */
 .footer {
-  text-align: center;
-  padding: 15px;
+  padding: 15px 20px;
   background: var(--white);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius);
+  border-top: 1px solid var(--border-color);
   color: var(--text-light);
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap; /* allow wrapping on small screens */
+  display: flex;
+  text-align: left; /* align left for better readability */
+
 }
 
 .footer a {
@@ -336,6 +349,9 @@ button:hover {
 
 .footer a:hover {
   color: var(--text-heading);
+}
+.footer p {
+    margin: 0;
 }
 
 /* =========================
@@ -355,6 +371,8 @@ button:hover {
   }
 
   .navbar ul {
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
   }
 }
