@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
     <title>Safe Paws</title>
 </head>
 <body>
@@ -24,7 +25,8 @@
         </nav>
     </header>
 
-    <main id="main-content">
+    <main id="main-content" class="page-layout">
+        <section class="layout-section panel" aria-labelledby="hero-title">
         <section id="hero" aria-labelledby="hero-title">
             <h1 id="hero-title">Hero Section</h1>
             <p>Adopt a Pet!</p>
@@ -77,13 +79,15 @@
 
             <p><a href="adoption.html">See all animals available for adoption</a></p>
         </section>
+        </section>
 
+        <article class="layout-article panel" aria-labelledby="browse-by-type-title">
         <section id="browse-by-type" aria-labelledby="browse-by-type-title">
             <h2 id="browse-by-type-title" class="section-title">Browse More Pets by Type</h2>
             <p>Choose from the folders below and view more pets on the home page.</p>
-
-            <section aria-labelledby="dogs-title">
-                <h3 id="dogs-title">Dogs</h3>
+            <br><br>
+            <h3 id="dogs-title">Dogs</h3>
+            <section class="row_dogs" aria-labelledby="dogs-title">
                 <article>
                     <figure>
                         <img src="./images/dogs/labrador.jpg" alt="Labrador dog available for adoption" width="200" height="200">
@@ -106,9 +110,9 @@
                     <p><a href="enquiry.html">Enquire about this dog</a></p>
                 </article>
             </section>
-
-            <section aria-labelledby="cats-title">
-                <h3 id="cats-title">Cats</h3>
+            <br><br>
+            <h3 id="cats-title">Cats</h3>
+            <section class="row_cats" aria-labelledby="cats-title">
                 <article>
                     <figure>
                         <img src="./images/cats/artel.jpg" alt="Cat resting indoors" width="200" height="200">
@@ -131,9 +135,9 @@
                     <p><a href="enquiry.html">Enquire about this cat</a></p>
                 </article>
             </section>
-
-            <section aria-labelledby="rabbits-title">
-                <h3 id="rabbits-title">Rabbits and Small Pets</h3>
+            <br><br>
+            <h3 id="rabbits-title">Rabbits and Small Pets</h3>
+            <section class="row_rabbits" aria-labelledby="rabbits-title">
                 <article>
                     <figure>
                         <img src="./images/hamster_rabbit/rabbit_carrot.jpg" alt="Rabbit eating a carrot" width="200" height="200">
@@ -159,6 +163,7 @@
 
             <p><a href="adoption.html">Open the full adoption page</a></p>
         </section>
+        <br><br>
 
         <section id="about-preview" aria-labelledby="about-preview-title" class="about">
             <h2 id="about-preview-title" class="section-title">About Us Preview</h2>
@@ -168,11 +173,12 @@
             </p>
             <p><a href="about.html">Read more about Safe Paws</a></p>
         </section>
+        <br><br>
 
         <section id="quick-enquiry" aria-labelledby="quick-enquiry-title">
             <h2 id="quick-enquiry-title" class="section-title">Quick Enquiry</h2>
-            <form action="enquiry.html" method="get">
-                <p>
+            <form class="form" action="enquiry.html" method="get">
+                <p class="form-group">
                     <label for="pet-type">Pet Type:</label>
                     <select id="pet-type" name="petType">
                         <option value="">Select one</option>
@@ -181,19 +187,44 @@
                         <option value="rabbit">Rabbit</option>
                     </select>
                 </p>
-                <p>
+                <p class="form-group">
                     <label for="full-name">Your Name:</label>
                     <input type="text" id="full-name" name="fullName" placeholder="enter you name" required>
                 </p>
-                <p>
+                <p class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" placeholder="enter your email" required>
                 </p>
-                <p>
+                <p class="form-group">
                     <button type="submit">Continue to Enquiry</button>
                 </p>
             </form>
         </section>
+        </article>
+
+        <aside class="layout-aside" aria-label="Animal slideshow and quick links">
+            <section class="panel" aria-labelledby="slideshow-title">
+                <h2 id="slideshow-title">Meet Our Pets</h2>
+                <div class="slideshow">
+                    <figure class="slide">
+                        <img src="./images/dogs/labrador.jpg" alt="Labrador waiting for adoption">
+                    </figure>
+                    <figure class="slide">
+                        <img src="./images/cats/annabel.jpg" alt="Cat available for adoption">
+                    </figure>
+                    <figure class="slide">
+                        <img src="./images/hamster_rabbit/rabbit_grass.jpg" alt="Rabbit in green grass">
+                    </figure>
+                </div>
+            </section>
+
+            <section class="panel" aria-labelledby="home-help-title">
+                <h3 id="home-help-title">Need Help?</h3>
+                <p>Explore adoptions, ask questions, or contact our team for guidance.</p>
+                <p><a href="adoption.html">View Available Pets</a></p>
+                <p><a href="enquiry.html">Send an Enquiry</a></p>
+            </section>
+        </aside>
     </main>
 
     <footer class="footer">

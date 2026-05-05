@@ -1,0 +1,68 @@
+/* Page-specific styles for index.html */
+.row_dogs,
+.row_cats,
+.row_rabbits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* space between items */
+  margin-top: 20px;
+}
+
+#about-preview {
+  position: relative;
+  background: url('/images/about_img1.jpeg') center/cover no-repeat;
+  border-radius: 12px;
+  overflow: hidden;
+  color: white;
+}
+
+#about-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* adjust 0.4–0.6 */
+  pointer-events: none;
+}
+
+#about-preview .content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+#about-preview > * {
+  position: relative;
+  z-index: 1;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+}
+.form-group {
+  display: grid;
+  grid-template-columns: 150px 1fr; /* label | input */
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+.form-group label {
+  font-weight: 500;
+  text-align: right;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  font-family: inherit;
+}
+#pet-type option {
+  color: #3f9ccc; /* lighter text for options */
+}
+
+/* Add home page overrides below this line */
