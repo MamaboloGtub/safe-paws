@@ -1,0 +1,218 @@
+<!-- ===============================
+     SHARED FORM COMPONENTS & PATTERNS
+     ===============================
+     Usage: Reference these patterns when building forms.
+     Use fieldset + legend for logical grouping.
+     Mark required fields with <span aria-label="required">*</span>
+     Include consistent label + input patterns.
+     =============================== -->
+
+<!-- ===== PATTERN 1: STANDARD FORM FIELD (Text) ===== -->
+<p>
+    <label for="field-id">Field Label: <span aria-label="required">*</span></label>
+    <input type="text" id="field-id" name="fieldName" required>
+</p>
+
+<!-- ===== PATTERN 2: STANDARD FORM FIELD (Email) ===== -->
+<p>
+    <label for="email">Email Address: <span aria-label="required">*</span></label>
+    <input type="email" id="email" name="email" required>
+</p>
+
+<!-- ===== PATTERN 3: STANDARD FORM FIELD (Tel) ===== -->
+<p>
+    <label for="phone">Phone Number: <span aria-label="required">*</span></label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9\s\-\+]+" required>
+</p>
+
+<!-- ===== PATTERN 4: STANDARD FORM FIELD (Select) ===== -->
+<p>
+    <label for="select-id">Select Label: <span aria-label="required">*</span></label>
+    <select id="select-id" name="selectName" required>
+        <option value="">Select one</option>
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+    </select>
+</p>
+
+<!-- ===== PATTERN 5: STANDARD FORM FIELD (Textarea) ===== -->
+<p>
+    <label for="message">Message: <span aria-label="required">*</span></label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+</p>
+
+<!-- ===== PATTERN 6: FIELDSET GROUPING ===== -->
+<fieldset>
+    <legend>Section Title</legend>
+    <p>
+        <label for="field1">Field 1: <span aria-label="required">*</span></label>
+        <input type="text" id="field1" name="field1" required>
+    </p>
+    <p>
+        <label for="field2">Field 2:</label>
+        <input type="text" id="field2" name="field2">
+    </p>
+</fieldset>
+
+<!-- ===== PATTERN 7: RADIO GROUP ===== -->
+<fieldset>
+    <legend>Select Preference:</legend>
+    <p>
+        <label>
+            <input type="radio" name="preference" value="option1" required>
+            Option 1
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="radio" name="preference" value="option2" required>
+            Option 2
+        </label>
+    </p>
+</fieldset>
+
+<!-- ===== PATTERN 8: CHECKBOX GROUP ===== -->
+<fieldset>
+    <legend>Select all that apply:</legend>
+    <p>
+        <label>
+            <input type="checkbox" name="interest" value="interest1">
+            Interest 1
+        </label>
+    </p>
+    <p>
+        <label>
+            <input type="checkbox" name="interest" value="interest2">
+            Interest 2
+        </label>
+    </p>
+</fieldset>
+
+<!-- ===== PATTERN 9: SUBMIT BUTTON ===== -->
+<p>
+    <button type="submit">Submit</button>
+</p>
+
+<!-- ===== COMPLETE EXAMPLE 1: QUICK ENQUIRY (index.html) ===== -->
+<form action="enquiry.html" method="get">
+    <fieldset>
+        <legend>Quick Pet Enquiry</legend>
+        <p>
+            <label for="pet-type">Pet Type:</label>
+            <select id="pet-type" name="petType">
+                <option value="">Select one</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="rabbit">Rabbit</option>
+            </select>
+        </p>
+        <p>
+            <label for="full-name">Your Name: <span aria-label="required">*</span></label>
+            <input type="text" id="full-name" name="fullName" required>
+        </p>
+        <p>
+            <label for="email">Email: <span aria-label="required">*</span></label>
+            <input type="email" id="email" name="email" required>
+        </p>
+        <p>
+            <button type="submit">Continue to Enquiry</button>
+        </p>
+    </fieldset>
+</form>
+
+<!-- ===== COMPLETE EXAMPLE 2: CONTACT FORM (contact.html) ===== -->
+<form action="#" method="post">
+    <fieldset>
+        <legend>Personal Information</legend>
+        <p>
+            <label for="fullname">Full Name: <span aria-label="required">*</span></label>
+            <input type="text" id="fullname" name="fullname" required>
+        </p>
+        <p>
+            <label for="email">Email Address: <span aria-label="required">*</span></label>
+            <input type="email" id="email" name="email" required>
+        </p>
+        <p>
+            <label for="phone">Phone Number: <span aria-label="required">*</span></label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9\s\-\+]+" required>
+        </p>
+    </fieldset>
+
+    <fieldset>
+        <legend>Message Details</legend>
+        <p>
+            <label for="reason">Reason for Contact: <span aria-label="required">*</span></label>
+            <select id="reason" name="reason" required>
+                <option value="">Select one</option>
+                <option value="adoption">Adoption</option>
+                <option value="volunteer">Volunteer</option>
+                <option value="donation">Donation</option>
+                <option value="other">Other</option>
+            </select>
+        </p>
+        <p>
+            <label for="message">Message: <span aria-label="required">*</span></label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </p>
+        <p>
+            <button type="submit">Send Message</button>
+        </p>
+    </fieldset>
+</form>
+
+<!-- ===== COMPLETE EXAMPLE 3: GENERAL ENQUIRY (enquiry.html) ===== -->
+<form action="#" method="post">
+    <fieldset>
+        <legend>Contact Information</legend>
+        <p>
+            <label for="fullname">Full Name: <span aria-label="required">*</span></label>
+            <input type="text" id="fullname" name="fullname" required>
+        </p>
+        <p>
+            <label for="email">Email Address: <span aria-label="required">*</span></label>
+            <input type="email" id="email" name="email" required>
+        </p>
+        <p>
+            <label for="phone">Phone Number: <span aria-label="required">*</span></label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9\s\-\+]+" required>
+        </p>
+    </fieldset>
+
+    <fieldset>
+        <legend>Enquiry Details</legend>
+        <p>
+            <label for="enquiry-type">What is your enquiry about? <span aria-label="required">*</span></label>
+            <select id="enquiry-type" name="enquiryType" required>
+                <option value="">Select one</option>
+                <option value="general">General Question</option>
+                <option value="adoption">Adoption Question</option>
+                <option value="pet-health">Pet Health</option>
+                <option value="volunteer">Volunteer Opportunity</option>
+            </select>
+        </p>
+        <p>
+            <label for="message">Your Message: <span aria-label="required">*</span></label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </p>
+    </fieldset>
+
+    <fieldset>
+        <legend>Preferred Contact Method</legend>
+        <p>
+            <label>
+                <input type="radio" name="contact-method" value="email" required>
+                Email
+            </label>
+        </p>
+        <p>
+            <label>
+                <input type="radio" name="contact-method" value="phone" required>
+                Phone
+            </label>
+        </p>
+    </fieldset>
+
+    <p>
+        <button type="submit">Submit Enquiry</button>
+    </p>
+</form>
