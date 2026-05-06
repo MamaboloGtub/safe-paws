@@ -1,7 +1,5 @@
 /* Page-specific styles for faq.html */
-.panel ul {
-    margin-left: 25px;
-}
+
 .layout-section {
     background: var(--soft-green);
 }
