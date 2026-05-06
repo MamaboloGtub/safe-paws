@@ -1,3 +1,96 @@
 /* Page-specific styles for faq.html */
+.panel ul {
+    margin-left: 25px;
+}
+.layout-section {
+    background: var(--soft-green);
+}
+.layout-section section h2 {
+    margin-top: 20px;
+}
+.layout-section section details li {
+    margin-left: 20px;
+}
+.layout-article section h2 {
+    margin-top: 20px;
+}
+.layout-article {
+    background: var(--soft-blue);
+}
+
+
+details {
+    margin-bottom: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+}
+
+summary {
+    position: relative;
+    padding: 14px 18px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    animation: summary-nudge 1.8s ease-in-out infinite;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::after {
+    content: "+";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    transition: transform 0.25s ease;
+}
+
+details[open] summary::after {
+    content: "-";
+}
+
+details[open] summary {
+    animation: none;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+summary:hover,
+summary:focus-visible {
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--deep-green);
+    transform: translateX(3px);
+}
+
+details > p,
+details > ul,
+details > ol {
+    padding: 0 18px 14px;
+}
+
+@keyframes summary-nudge {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    40% {
+        transform: translateX(3px);
+    }
+    60% {
+        transform: translateX(-1px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    summary {
+        animation: none;
+    }
+}
+
 
 /* Add FAQ page overrides below this line */

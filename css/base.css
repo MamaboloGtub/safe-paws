@@ -176,7 +176,7 @@ main.page-layout {
   justify-content: flex-start;
   align-items: center;
   gap: 24px;
-  background: var(--white);
+  background: var(--soft-green);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 12px 20px;
@@ -294,6 +294,11 @@ legend {
   color: var(--label-dark);
   font-weight: 600;
 }
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
 
 input,
 select,
@@ -331,7 +336,7 @@ button:hover {
 ========================= */
 .footer {
   padding: 15px 20px;
-  background: var(--white);
+  background: var(--soft-green);
   border-top: 1px solid var(--border-color);
   color: var(--text-light);
   gap: 20px;
@@ -343,12 +348,12 @@ button:hover {
 }
 
 .footer a {
-  color: var(--primary-green);
+  color: var(--primary-blue);
   font-weight: 600;
 }
 
 .footer a:hover {
-  color: var(--text-heading);
+  color: var(--text-dark);
 }
 .footer p {
     margin: 0;
