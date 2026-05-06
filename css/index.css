@@ -34,33 +34,7 @@
   position: relative;
   z-index: 1;
 }
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 400px;
-}
-.form-group {
-  display: grid;
-  grid-template-columns: 150px 1fr; /* label | input */
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 15px;
-}
-.form-group label {
-  font-weight: 500;
-  text-align: right;
-}
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #dfe6e9;
-  border-radius: 8px;
-  font-family: inherit;
-}
 #pet-type option {
   color: #3f9ccc; /* lighter text for options */
 }
