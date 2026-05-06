@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/adoption.css">
     <title>Adoption</title>
 </head>
 <body>
-    <div class="container">
     <header class="navbar">
-        <p><a href="#main-content">Skip to main content</a></p>
-        <img src="./images/SafePaws_Logo.png" alt="Safe Paws Logo" height="120" width="180" class="logo">
+        <img src="./images/SafePaws_Logo.png" alt="Safe Paws Logo" height="50" width="100" class="logo">
         <nav aria-label="Main navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -23,14 +22,16 @@
             </ul>
         </nav>
     </header>
+    <div class="container">
 
-    <main id="main-content">
-        <h1>Adoption Information</h1>
+    <main id="main-content" class="page-layout">
+    <section class="layout-section panel" aria-labelledby="adoption-main-title">
+        <h1 id="adoption-main-title">Adoption Information</h1>
         <p>Welcome to our adoption page! Here you can find information about the pets available for adoption and how to start the process.</p>
 
-        <section aria-labelledby="process-title">
+        <section class="process" aria-labelledby="process-title">
             <h2 id="process-title">Adoption Process</h2>
-            <p>To adopt a pet, please follow these steps:</p>
+            <p><strong><i>To adopt a pet, please follow these steps:</i></strong></p>
             <ol>
                 <li>Browse our available pets below</li>
                 <li>Fill out the adoption application form</li>
@@ -39,15 +40,18 @@
                 <li>If everything looks good, we'll guide you through final paperwork</li>
             </ol>
         </section>
+        <br><br>
 
         <hr>
+        <br><br>
 
         <section id="available-pets" aria-labelledby="pets-title">
             <h2 id="pets-title">Available Pets</h2>
 
             <section aria-labelledby="dogs-title">
                 <h3 id="dogs-title">Dogs</h3>
-                <article>
+                <div class="cards adoption-cards">
+                <article class="card adoption-card">
                     <h4>Buddy</h4>
                     <figure>
                         <img src="./images/dogs/labrador.jpg" alt="Buddy, a friendly golden/yellow Labrador" width="200" height="200">
@@ -58,7 +62,7 @@
                     <p><a href="enquiry.html">Enquire about Buddy</a></p>
                 </article>
 
-                <article>
+                <article class="card adoption-card">
                     <h4>Max</h4>
                     <figure>
                         <img src="./images/dogs/dachshund.jpg" alt="Max, a young dachshund puppy" width="200" height="200">
@@ -69,7 +73,7 @@
                     <p><a href="enquiry.html">Enquire about Max</a></p>
                 </article>
 
-                <article>
+                <article class="card adoption-card">
                     <h4>Luna</h4>
                     <figure>
                         <img src="./images/dogs/jamie-street.jpg" alt="Luna, a rescue dog outside" width="200" height="200">
@@ -79,11 +83,13 @@
                     <p>A calm and gentle rescue dog looking for a quiet home. Luna is quiet, patient, and enjoys short daily walks. Perfect for seniors or small families.</p>
                     <p><a href="enquiry.html">Enquire about Luna</a></p>
                 </article>
+                </div>
             </section>
 
             <section aria-labelledby="cats-title">
                 <h3 id="cats-title">Cats</h3>
-                <article>
+                <div class="cards adoption-cards">
+                <article class="card adoption-card">
                     <h4>Mittens</h4>
                     <figure>
                         <img src="./images/cats/annabel.jpg" alt="Mittens, a calm cat indoors" width="200" height="200">
@@ -94,7 +100,7 @@
                     <p><a href="enquiry.html">Enquire about Mittens</a></p>
                 </article>
 
-                <article>
+                <article class="card adoption-card">
                     <h4>Whiskers</h4>
                     <figure>
                         <img src="./images/cats/brisch.jpg" alt="Whiskers, an affectionate cat" width="200" height="200">
@@ -105,7 +111,7 @@
                     <p><a href="enquiry.html">Enquire about Whiskers</a></p>
                 </article>
 
-                <article>
+                <article class="card adoption-card">
                     <h4>Shadow</h4>
                     <figure>
                         <img src="./images/cats/loan-7AIDE8PrvA0-unsplash.jpg" alt="Shadow, a cat with bright eyes" width="200" height="200">
@@ -115,11 +121,13 @@
                     <p>An intelligent and independent cat. Shadow enjoys quiet spaces and is perfect for single professionals or elderly owners. She is calm and well-mannered.</p>
                     <p><a href="enquiry.html">Enquire about Shadow</a></p>
                 </article>
+                </div>
             </section>
 
             <section aria-labelledby="rabbits-title">
                 <h3 id="rabbits-title">Rabbits and Small Pets</h3>
-                <article>
+                <div class="cards adoption-cards">
+                <article class="card adoption-card">
                     <h4>Hoppy</h4>
                     <figure>
                         <img src="./images/hamster_rabbit/rabbit_carrot.jpg" alt="Hoppy, a rabbit eating a carrot" width="200" height="200">
@@ -130,7 +138,7 @@
                     <p><a href="enquiry.html">Enquire about Hoppy</a></p>
                 </article>
 
-                <article>
+                <article class="card adoption-card">
                     <h4>Clover</h4>
                     <figure>
                         <img src="./images/hamster_rabbit/rabbit_grass.jpg" alt="Clover, a rabbit in the grass" width="200" height="200">
@@ -141,7 +149,7 @@
                     <p><a href="enquiry.html">Enquire about Clover</a></p>
                 </article>
 
-                <article>
+                <article class="card adoption-card">
                     <h4>Snowball</h4>
                     <figure>
                         <img src="./images/hamster_rabbit/stockvaul_rabbit.jpg" alt="Snowball, a white rabbit" width="200" height="200">
@@ -151,26 +159,28 @@
                     <p>A calm and mature rabbit, perfect for first-time small pet owners. Snowball enjoys a quiet routine and gentle interaction.</p>
                     <p><a href="enquiry.html">Enquire about Snowball</a></p>
                 </article>
+                </div>
             </section>
         </section>
 
-        <hr>
+        </section>
 
+        <article class="layout-article panel" aria-labelledby="form-title">
         <section aria-labelledby="form-title">
             <h2 id="form-title">Ready to Adopt?</h2>
             <p>Fill out this adoption application form to express your interest in adopting a pet.</p>
-            <form action="enquiry.html" method="get">
+            <form class="form" action="enquiry.html" method="get">
                 <fieldset>
                     <legend>Personal Information</legend>
-                    <p>
+                    <p class="form-group">
                         <label for="fullname">Full Name: <span aria-label="required">*</span></label>
                         <input type="text" id="fullname" name="fullname" required>
                     </p>
-                    <p>
+                    <p class="form-group">
                         <label for="email">Email: <span aria-label="required">*</span></label>
                         <input type="email" id="email" name="email" required>
                     </p>
-                    <p>
+                    <p class="form-group">
                         <label for="phone">Phone Number: <span aria-label="required">*</span></label>
                         <input type="tel" id="phone" name="phone" pattern="[0-9\s\-\+]+" required>
                     </p>
@@ -178,11 +188,11 @@
 
                 <fieldset>
                     <legend>Residence Information</legend>
-                    <p>
+                    <p class="form-group">
                         <label for="address">Physical Address: <span aria-label="required">*</span></label>
                         <textarea id="address" name="address" rows="3" required></textarea>
                     </p>
-                    <p>
+                    <p class="form-group">
                         <label for="housing">Housing Type: <span aria-label="required">*</span></label>
                         <select id="housing" name="housing" required>
                             <option value="">Select one</option>
@@ -195,16 +205,16 @@
 
                 <fieldset>
                     <legend>Pet Preference</legend>
-                    <p>Which type of pet are you interested in? <span aria-label="required">*</span></p>
-                    <p>
+                    <p class="pet_interest">Which type of pet are you interested in? <span aria-label="required">*</span></p>
+                    <p class="pet_interest">
                         <input type="radio" id="dog" name="petType" value="dog" required>
                         <label for="dog">Dog</label>
                     </p>
-                    <p>
+                    <p class="pet_interest">
                         <input type="radio" id="cat" name="petType" value="cat">
                         <label for="cat">Cat</label>
                     </p>
-                    <p>
+                    <p class="pet_interest">
                         <input type="radio" id="rabbit" name="petType" value="rabbit">
                         <label for="rabbit">Rabbit or Small Pet</label>
                     </p>
@@ -212,11 +222,11 @@
 
                 <fieldset>
                     <legend>Household Information</legend>
-                    <p>
+                    <p class="form-group">
                         <label for="household-size">Number of people in household: <span aria-label="required">*</span></label>
                         <input type="number" id="household-size" name="householdSize" min="1" required>
                     </p>
-                    <p>
+                    <p class="form-group">
                         <label for="children">Do you have children under 12?</label>
                         <select id="children" name="children">
                             <option value="">Select one</option>
@@ -224,7 +234,7 @@
                             <option value="no">No</option>
                         </select>
                     </p>
-                    <p>
+                    <p class="form-group">
                         <label for="other-pets">Do you have other pets?</label>
                         <select id="other-pets" name="otherPets">
                             <option value="">Select one</option>
@@ -236,7 +246,7 @@
 
                 <fieldset>
                     <legend>Additional Information</legend>
-                    <p>
+                    <p class="form-group">
                         <label for="experience">Pet ownership experience: <span aria-label="required">*</span></label>
                         <select id="experience" name="experience" required>
                             <option value="">Select one</option>
@@ -245,7 +255,7 @@
                             <option value="experienced">Very experienced</option>
                         </select>
                     </p>
-                    <p>
+                    <p class="form-group">
                         <label for="message">Tell us about yourself and your home:</label>
                         <textarea id="message" name="message" rows="4" placeholder="Help us understand your lifestyle and why you want to adopt"></textarea>
                     </p>
@@ -256,15 +266,33 @@
                 </p>
             </form>
         </section>
+        </article>
+
+        <aside class="layout-aside" aria-label="Adoption page help">
+            <section class="panel" aria-labelledby="adoption-checklist-title">
+                <h2 id="adoption-checklist-title">Adoption Checklist</h2>
+                <ul>
+                    <li>Choose a pet type</li>
+                    <li>Complete the form</li>
+                    <li>Prepare your home</li>
+                    <li>Wait for team follow-up</li>
+                </ul>
+            </section>
+            <section class="panel" aria-labelledby="adoption-help-title">
+                <h3 id="adoption-help-title">Need Help Choosing?</h3>
+                <p><a href="faq.html">Read Adoption FAQs</a></p>
+                <p><a href="enquiry.html">Ask a Question</a></p>
+            </section>
+        </aside>
     </main>
 
-    <footer class="footer">
-        <p>&copy; 2026 Safe Paws. All rights reserved.</p>
-        <p><strong>Contact:</strong></p>
-        <p>Email: <a href="mailto:info@safepaws.example">info@safepaws.example</a></p>
-        <p>Phone: <a href="tel:+27110000000">+27 11 000 0000</a></p>
-        <p><a href="contact.html">Contact page</a> | <a href="enquiry.html">General Enquiry</a></p>
-    </footer>
-    </div>
+</div>
+<footer class="footer">
+    <p>&copy; 2026 Safe Paws. All rights reserved.</p>
+    <p><strong>Contact:</strong></p>
+    <p>Email: <a href="mailto:info@safepaws.example">info@safepaws.example</a></p>
+    <p>Phone: <a href="tel:+27110000000">+27 11 000 0000</a></p>
+    <p><a href="contact.html">Contact page</a> | <a href="enquiry.html">General Enquiry</a></p>
+</footer>
 </body>
 </html>

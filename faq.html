@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/faq.css">
     <title>FAQ - Safe Paws</title>
 </head>
 <body>
-    <div class="container">
     <header class="navbar">
-        <p><a href="#main-content">Skip to main content</a></p>
         <img src="./images/SafePaws_Logo.png" alt="Safe Paws Logo" height="120" width="180" class="logo">
         <nav aria-label="Main navigation">
             <ul>
@@ -23,9 +22,11 @@
             </ul>
         </nav>
     </header>
+    <div class="container">
 
-    <main id="main-content">
-        <h1>Frequently Asked Questions</h1>
+    <main id="main-content" class="page-layout">
+    <section class="layout-section panel" aria-labelledby="faq-main-title">
+        <h1 id="faq-main-title">Frequently Asked Questions</h1>
         <p>Find answers to common questions about Safe Paws, our animals, and adoption process. Click on any question to expand the answer.</p>
 
         <hr>
@@ -89,7 +90,9 @@
                 <p>We rescue animals of all ages, from young puppies and kittens to senior pets. Senior animals make wonderful companions and often settle in faster. Browse our <a href="adoption.html">adoption page</a> to see our current animals and their ages.</p>
             </details>
         </section>
+    </section>
 
+    <article class="layout-article panel" aria-labelledby="care-section">
         <hr>
 
         <section aria-labelledby="care-section">
@@ -279,15 +282,31 @@
             <h2 id="still-need-help">Didn't Find Your Answer?</h2>
             <p>If you couldn't find the answer to your question, please <a href="contact.html">contact us</a> or <a href="enquiry.html">submit an enquiry</a>. Our team is happy to help!</p>
         </section>
+    </article>
+
+    <aside class="layout-aside" aria-label="FAQ shortcuts">
+        <section class="panel" aria-labelledby="faq-topics-title">
+            <h2 id="faq-topics-title">Popular Topics</h2>
+            <ul>
+                <li><a href="adoption.html">Adoption Process</a></li>
+                <li><a href="contact.html">Volunteering</a></li>
+                <li><a href="enquiry.html">General Enquiries</a></li>
+            </ul>
+        </section>
+        <section class="panel" aria-labelledby="faq-contact-title">
+            <h3 id="faq-contact-title">Still Need Help?</h3>
+            <p><a href="contact.html">Contact Our Team</a></p>
+        </section>
+    </aside>
     </main>
 
-    <footer class="footer">
-        <p>&copy; 2026 Safe Paws. All rights reserved.</p>
-        <p><strong>Contact:</strong></p>
-        <p>Email: <a href="mailto:info@safepaws.example">info@safepaws.example</a></p>
-        <p>Phone: <a href="tel:+27110000000">+27 11 000 0000</a></p>
-        <p><a href="contact.html">Contact page</a> | <a href="enquiry.html">General Enquiry</a></p>
-    </footer>
-    </div>
+</div>
+<footer class="footer">
+    <p>&copy; 2026 Safe Paws. All rights reserved.</p>
+    <p><strong>Contact:</strong></p>
+    <p>Email: <a href="mailto:info@safepaws.example">info@safepaws.example</a></p>
+    <p>Phone: <a href="tel:+27110000000">+27 11 000 0000</a></p>
+    <p><a href="contact.html">Contact page</a> | <a href="enquiry.html">General Enquiry</a></p>
+</footer>
 </body>
 </html>

@@ -1,0 +1,48 @@
+/* Page-specific styles for contact.html */
+.layout-section {
+    background: var(--soft-green);
+}
+.layout-article {
+    background: var(--soft-blue);
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  font-family: inherit;
+}
+.form-group {
+  display: grid;
+  grid-template-columns: 150px 1fr; /* label | input */
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+.form-group label {
+  font-weight: 500;
+  text-align: right;
+}
+.btn-group {
+    text-align: center;
+    margin-bottom: 25px;
+}
+#faq-title {
+    margin-top: 30px;
+    margin-bottom: 25px;
+}
+.ways-title ul {
+    padding: 0 20px;
+}
+.ways-title h2 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+/* Add contact page overrides below this line */

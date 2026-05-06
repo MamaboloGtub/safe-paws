@@ -1,0 +1,15 @@
+/* Page-specific styles for about.html */
+.layout-section {
+    background: var(--soft-blue);
+}
+.our_service {
+    margin-left: 20px;
+}
+.layout-article {
+    background: var(--soft-green);
+}
+.layout-article section {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+/* Add about page overrides below this line */
