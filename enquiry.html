@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/components.css">
     <link rel="stylesheet" href="./css/enquiry.css">
+    <style>
+        textarea#message {
+            font-style: italic;
+            color: green;
+        }
+    </style>
     <title>Enquiry</title>
 </head>
 <body>
@@ -69,7 +75,7 @@
                 </p>
                 <p class="form-group">
                     <label for="message">Your Message: <span aria-label="required">*</span></label>
-                    <textarea id="message" name="message" rows="6" placeholder="Please provide details about your enquiry..." required></textarea>
+                    <textarea id="message" name="message" rows="6" placeholder="Please provide details about your enquiry..." style="font-style: italic; color: green;" required></textarea>
                 </p>
             </fieldset>
 

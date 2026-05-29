@@ -7,6 +7,8 @@
      Include consistent label + input patterns.
      =============================== -->
 
+<!-- Reusable field-level patterns: copy only the blocks needed for a page form. -->
+
 <!-- ===== PATTERN 1: STANDARD FORM FIELD (Text) ===== -->
 <p>
     <label for="field-id">Field Label: <span aria-label="required">*</span></label>
@@ -38,7 +40,7 @@
 <!-- ===== PATTERN 5: STANDARD FORM FIELD (Textarea) ===== -->
 <p>
     <label for="message">Message: <span aria-label="required">*</span></label>
-    <textarea id="message" name="message" rows="5" required></textarea>
+    <textarea id="message" name="message" rows="5" style="font-style: italic; color: green;" required></textarea>
 </p>
 
 <!-- ===== PATTERN 6: FIELDSET GROUPING ===== -->
@@ -92,6 +94,8 @@
 <p>
     <button type="submit">Submit</button>
 </p>
+
+<!-- Complete form examples below show how to combine field patterns into full page forms. -->
 
 <!-- ===== COMPLETE EXAMPLE 1: QUICK ENQUIRY (index.html) ===== -->
 <form action="enquiry.html" method="get">
@@ -152,7 +156,7 @@
         </p>
         <p>
             <label for="message">Message: <span aria-label="required">*</span></label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <textarea id="message" name="message" rows="5" style="font-style: italic; color: green;" required></textarea>
         </p>
         <p>
             <button type="submit">Send Message</button>
@@ -192,7 +196,7 @@
         </p>
         <p>
             <label for="message">Your Message: <span aria-label="required">*</span></label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+            <textarea id="message" name="message" rows="5" style="font-style: italic; color: green;" required></textarea>
         </p>
     </fieldset>
 
@@ -216,3 +220,5 @@
         <button type="submit">Submit Enquiry</button>
     </p>
 </form>
+
+<!-- End of shared form component reference file. -->
