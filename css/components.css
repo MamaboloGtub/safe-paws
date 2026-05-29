@@ -2,7 +2,7 @@
    SHARED COMPONENT STYLES
 ========================= */
 
-/* Form Styles */
+/* Layout container for reusable forms across pages */
 .form {
   display: flex;
   flex-direction: column;
@@ -10,6 +10,7 @@
   max-width: 400px;
 }
 
+/* Two-column label/input alignment for consistent form readability */
 .form-group {
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -18,11 +19,13 @@
   margin-bottom: 15px;
 }
 
+/* Right-align labels so they line up neatly with inputs */
 .form-group label {
   font-weight: 500;
   text-align: right;
 }
 
+/* Shared control appearance for text fields, selects, and textareas */
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -33,7 +36,7 @@
   font-family: inherit;
 }
 
-/* Panel List Styles */
+/* Standard list indentation used inside panel cards */
 .panel ul {
   padding-left: 25px;
 }
