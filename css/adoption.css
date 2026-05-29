@@ -69,3 +69,19 @@
     margin-left: 25px;
 }
 
+@media (max-width: 768px) {
+	#pets-title {
+		margin-left: 0;
+		justify-content: center;
+	}
+
+	#available-pets > section > h3 {
+		display: block;
+		margin-bottom: 14px;
+	}
+
+	.pet_interest {
+		margin-left: 0;
+	}
+}
+
