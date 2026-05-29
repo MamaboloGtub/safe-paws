@@ -47,6 +47,12 @@ body {
   line-height: 1.6;
 }
 
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
 h1,
 h2,
 h3,
@@ -363,6 +369,10 @@ button:hover {
    RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
   main.page-layout {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -371,13 +381,52 @@ button:hover {
       "aside";
   }
 
+  .panel {
+    padding: 16px;
+  }
+
   .cards {
     flex-direction: column;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .navbar .logo {
+    width: 140px;
+    height: auto;
+    margin: 0 auto;
   }
 
   .navbar ul {
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+
+  #hero {
+    padding: 28px 14px;
+  }
+
+  #hero button,
+  button[type="submit"],
+  button[type="reset"] {
+    width: 100%;
   }
 }
