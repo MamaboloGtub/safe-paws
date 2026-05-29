@@ -3,11 +3,11 @@
 School Portfolio of Evidence Website Project
 
 ## School
-- IIE Rosebank Colege
+- IIE Rosebank College
 ## Qualification
 - Bachelor of Information Technology in Business Systems
 ## Module
-- WEDE5020 - Introdution to web development. 
+- WEDE5020 - Introduction to web development. 
 
 ## Assignment Overview
 
@@ -18,6 +18,9 @@ This repository contains the Safe Paws pet adoption website developed for a scho
 - POE Due Date: 19 June 2026
 
 Current status: Part 1 implementation (HTML-only foundation, no CSS and no JavaScript).
+
+## ChangeLog 
+Find the changelog here: [release](https://github.com/MamaboloGtub/safe-paws/releases)
 
 ## Part 1 Scope
 
@@ -66,14 +69,14 @@ View them in part 2 or follow the link below
 - Semantic sections (`header`, `nav`, `main`, `section`, `article`, `footer`)
 - Accessible navigation (`aria-current`, skip links)
 - Native interactive HTML (`details` and `summary` in FAQ)
-- Structured forms with `fieldset` and `legend`
+- Structured forms with `fieldset` and `legend.`
 - Built-in HTML5 validation (`required`, `email`, `tel`, `number`, `pattern`)
-- Contact details using `address`, `mailto`, and `tel`
+- Contact details using `address`, `mailto`, and `tel.`
 
 ## How to Run Locally
 
 1. Open the project folder in VS Code.
-2. Open `index.html` in your browser. (when using the vsCOde you can right click on the `index.html` file and select Open with Live Server).
+2. Open `index.html` in your browser. (When using the vsCode, you can right-click on the `index.html` file and select Open with Live Server).
 3. Navigate through the site using the page links.
 
 ## Publish on GitHub Pages
