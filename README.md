@@ -21,16 +21,17 @@ Current status: Part 1 implementation (HTML-only foundation, no CSS and no JavaS
 
 ## Part 1 Scope
 
-The website focuses on semantic HTML structure, navigation, content organization, accessibility basics, and form design using native HTML features.
+Part 1 details were moved into a dedicated document:
 
-Implemented pages:
+- [Part 1 Scope and Deliverables](PART1.md)
+- [Full Project Plan Reference](PROJECT_PLAN.md)
 
-- `index.html` (Home)
-- `about.html` (About Safe Paws)
-- `adoption.html` (Available pets + adoption form)
-- `contact.html` (Contact details + contact form)
-- `enquiry.html` (General enquiry form)
-- `faq.html` (Expandable FAQ using `details` and `summary`)
+## Part 2 and POE
+
+Part 2 and POE planning details were moved into dedicated documents:
+
+- [Part 2 Scope and Targets](PART2.md)
+- [Full Project Plan (Part 1 + Part 2 + POE)](PROJECT_PLAN.md)
 
 ## Project Structure
 
@@ -43,6 +44,9 @@ safe-paws/
 |- enquiry.html
 |- faq.html
 |- README.md
+|- PART1.md
+|- PART2.md
+|- PROJECT_PLAN.md
 |- css/
 |- js/
 |- images/
@@ -50,6 +54,12 @@ safe-paws/
 	|- dogs/
 	|- hamster_rabbit/
 ```
+
+## Wireframes
+
+View them in part 2 or follow the link below
+
+- [View All Page Wireframes](PART2.md#wireframes)
 
 ## Key HTML Features Included
 
@@ -63,7 +73,7 @@ safe-paws/
 ## How to Run Locally
 
 1. Open the project folder in VS Code.
-2. Open `index.html` in your browser.
+2. Open `index.html` in your browser. (when using the vsCOde you can right click on the `index.html` file and select Open with Live Server).
 3. Navigate through the site using the page links.
 
 ## Publish on GitHub Pages
@@ -101,22 +111,10 @@ Replace `YOUR_USERNAME` with your GitHub username.
 Your site URL will be:
 
 ```text
-https://YOUR_USERNAME.github.io/safe-paws
+https://mamabologtub.github.io/safe-paws/
 ```
 
-## Roadmap for Part 2 and POE
 
-Part 2 target areas:
-
-- Add CSS styling and responsive layout
-- Improve visual hierarchy and spacing
-- Add consistent page-level design system
-
-POE target areas:
-
-- Final refinements across content and UX
-- Validation and testing evidence
-- Final documentation and submission packaging
 
 ## Author
 
