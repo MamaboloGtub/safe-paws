@@ -48,45 +48,63 @@
         <section id="featured-animals" aria-labelledby="featured-title">
             <h2 id="featured-title" class="section-title">Featured Animals</h2>
 
-            <div class="cards">
-                <article class="card">
-                    <h3>Animal Card 1</h3>
-                    <figure>
-                        <img src="./images/dogs/dachshund.jpg" alt="Young dachshund waiting for adoption" width="200" height="200">
-                        <figcaption>Dachshund, 1 year old</figcaption>
-                    </figure>
-                    <details>
-                        <summary>View details</summary>
-                        <p>Friendly and playful. Good with children.</p>
-                        <p><a href="enquiry.html">Enquire about this pet</a></p>
-                    </details>
-                </article>
+            <div class="tabs" data-tabs>
+                <div class="tab-list" role="tablist" aria-label="Featured animal categories">
+                    <button id="tab-featured-dogs" class="tab-button" role="tab" type="button" aria-selected="true" aria-controls="panel-featured-dogs" tabindex="0">Dogs</button>
+                    <button id="tab-featured-cats" class="tab-button" role="tab" type="button" aria-selected="false" aria-controls="panel-featured-cats" tabindex="-1">Cats</button>
+                    <button id="tab-featured-rabbits" class="tab-button" role="tab" type="button" aria-selected="false" aria-controls="panel-featured-rabbits" tabindex="-1">Rabbits</button>
+                </div>
 
-                <article class="card">
-                    <h3>Animal Card 2</h3>
-                    <figure>
-                        <img src="./images/cats/annabel.jpg" alt="Calm cat available for adoption" width="200" height="200">
-                        <figcaption>Annabel, 2 years old</figcaption>
-                    </figure>
-                    <details>
-                        <summary>View details</summary>
-                        <p>Calm and affectionate indoor companion.</p>
-                        <p><a href="enquiry.html">Enquire about this pet</a></p>
-                    </details>
-                </article>
+                <section id="panel-featured-dogs" class="tab-panel" role="tabpanel" aria-labelledby="tab-featured-dogs">
+                    <div class="cards">
+                        <article class="card">
+                            <h3>Dogs</h3>
+                            <figure>
+                                <img src="./images/dogs/dachshund.jpg" alt="Young dachshund waiting for adoption" width="200" height="200">
+                                <figcaption>Dachshund, 1 year old</figcaption>
+                            </figure>
+                            <details>
+                                <summary>View details</summary>
+                                <p>Friendly and playful. Good with children.</p>
+                                <p><a href="enquiry.html">Enquire about this pet</a></p>
+                            </details>
+                        </article>
+                    </div>
+                </section>
 
-                <article class="card">
-                    <h3>Animal Card 3</h3>
-                    <figure>
-                        <img src="./images/hamster_rabbit/janan.jpg" alt="Small rabbit looking at the camera" width="200" height="200">
-                        <figcaption>Snow, 8 months old</figcaption>
-                    </figure>
-                    <details>
-                        <summary>View details</summary>
-                        <p>Gentle rabbit, suitable for small families.</p>
-                        <p><a href="enquiry.html">Enquire about this pet</a></p>
-                    </details>
-                </article>
+                <section id="panel-featured-cats" class="tab-panel" role="tabpanel" aria-labelledby="tab-featured-cats" hidden>
+                    <div class="cards">
+                        <article class="card">
+                            <h3>Cats</h3>
+                            <figure>
+                                <img src="./images/cats/annabel.jpg" alt="Calm cat available for adoption" width="200" height="200">
+                                <figcaption>Annabel, 2 years old</figcaption>
+                            </figure>
+                            <details>
+                                <summary>View details</summary>
+                                <p>Calm and affectionate indoor companion.</p>
+                                <p><a href="enquiry.html">Enquire about this pet</a></p>
+                            </details>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="panel-featured-rabbits" class="tab-panel" role="tabpanel" aria-labelledby="tab-featured-rabbits" hidden>
+                    <div class="cards">
+                        <article class="card">
+                            <h3>Rabbits</h3>
+                            <figure>
+                                <img src="./images/hamster_rabbit/janan.jpg" alt="Small rabbit looking at the camera" width="200" height="200">
+                                <figcaption>Snow, 8 months old</figcaption>
+                            </figure>
+                            <details>
+                                <summary>View details</summary>
+                                <p>Gentle rabbit, suitable for small families.</p>
+                                <p><a href="enquiry.html">Enquire about this pet</a></p>
+                            </details>
+                        </article>
+                    </div>
+                </section>
             </div>
 
             <p><a href="adoption.html">See all animals available for adoption</a></p>
@@ -249,5 +267,6 @@
     <p>Phone: <a href="tel:+27110000000">+27 11 000 0000</a></p>
     <p><a href="contact.html">Contact page</a> | <a href="enquiry.html">General Enquiry</a></p>
 </footer>
+<script src="./js/main.js" defer></script>
 </body>
 </html>
