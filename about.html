@@ -49,6 +49,32 @@
     </section>
 
     <article class="layout-article panel" aria-labelledby="mission-title">
+        <section aria-labelledby="about-tabs-heading">
+            <h2 id="about-tabs-heading">Explore Safe Paws</h2>
+            <div class="tabs" data-tabs>
+                <div class="tab-list" role="tablist" aria-label="About Safe Paws details">
+                    <button id="tab-journey" class="tab-button" role="tab" type="button" aria-selected="true" aria-controls="panel-journey" tabindex="0">Journey</button>
+                    <button id="tab-care" class="tab-button" role="tab" type="button" aria-selected="false" aria-controls="panel-care" tabindex="-1">Care Model</button>
+                    <button id="tab-community" class="tab-button" role="tab" type="button" aria-selected="false" aria-controls="panel-community" tabindex="-1">Community</button>
+                </div>
+
+                <section id="panel-journey" class="tab-panel" role="tabpanel" aria-labelledby="tab-journey">
+                    <h3>Our Journey</h3>
+                    <p>From a small volunteer initiative in 2010, Safe Paws has grown into a trusted rescue and rehoming center serving animals across the community.</p>
+                </section>
+
+                <section id="panel-care" class="tab-panel" role="tabpanel" aria-labelledby="tab-care" hidden>
+                    <h3>Our Care Model</h3>
+                    <p>Each rescue receives vet assessment, rehabilitation planning, behavior support, and adoption matching to ensure long-term, stable placements.</p>
+                </section>
+
+                <section id="panel-community" class="tab-panel" role="tabpanel" aria-labelledby="tab-community" hidden>
+                    <h3>Community Impact</h3>
+                    <p>We partner with schools, volunteers, and local supporters to improve animal welfare awareness and increase responsible pet ownership.</p>
+                </section>
+            </div>
+        </section>
+
         <section aria-labelledby="mission-title">
             <h2 id="mission-title">Our Mission & Values</h2>
             <p><strong>Mission:</strong> To rescue, rehabilitate, and rehome abandoned and stray animals while advocating for responsible pet ownership and animal welfare.</p>
@@ -123,5 +149,6 @@
     <p>Phone: <a href="tel:+27110000000">+27 11 000 0000</a></p>
     <p><a href="contact.html">Contact page</a> | <a href="enquiry.html">General Enquiry</a></p>
 </footer>
+<script src="./js/main.js" defer></script>
 </body>
 </html>
