@@ -4,6 +4,7 @@
     initRevealAnimations();
     initFaqAccordion();
     initDynamicPetDirectory();
+    initSeeMorePetsModal();
     initAdoptionQuickView();
     initFormEnhancements();
   };
@@ -242,6 +243,162 @@
     sortSelect?.addEventListener("change", updateDirectory);
 
     updateDirectory();
+  };
+
+  const buildMorePetGalleryData = () => {
+    // Use the added Pexels files as the extra gallery content.
+    const groups = [
+      { typeLabel: "Dog", folder: "dogs", filePrefix: "dog" },
+      { typeLabel: "Cat", folder: "cats", filePrefix: "cat" },
+      {
+        typeLabel: "Rabbit / Small Pet",
+        folder: "hamster_rabbit",
+        filePrefix: "hamster_rabbit"
+      }
+    ];
+
+    return groups.flatMap((group) =>
+      Array.from({ length: 10 }, (_, index) => {
+        const imageNumber = String(index + 1).padStart(2, "0");
+        return {
+          typeLabel: group.typeLabel,
+          imageSrc: `./images/${group.folder}/pexels_${group.filePrefix}_${imageNumber}.jpg`,
+          imageAlt: `${group.typeLabel} available for adoption, gallery image ${index + 1}`
+        };
+      })
+    );
+  };
+
+  const buildMorePetsModal = () => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "pet-modal more-pets-modal";
+    wrapper.setAttribute("hidden", "");
+
+    wrapper.innerHTML =
+      '<div class="modal-backdrop" role="presentation">' +
+      '<section class="modal-card more-pets-modal-card" role="dialog" aria-modal="true" aria-labelledby="more-pets-modal-title">' +
+      '<button type="button" class="modal-close more-pets-close" aria-label="Close more pets gallery">x</button>' +
+      '<h3 id="more-pets-modal-title" class="modal-title">See More Pets</h3>' +
+      '<p class="more-pets-intro">Browse additional animals from our photo gallery.</p>' +
+      '<div class="cards adoption-cards more-pets-grid" id="more-pets-grid"></div>' +
+      '<div class="more-pets-pagination" aria-label="Gallery pagination">' +
+      '<button type="button" class="pagination-arrow" id="more-pets-prev" aria-label="Previous page">&larr;</button>' +
+      '<p class="more-pets-page-status" id="more-pets-page-status" aria-live="polite"></p>' +
+      '<button type="button" class="pagination-arrow" id="more-pets-next" aria-label="Next page">&rarr;</button>' +
+      "</div>" +
+      "</section>" +
+      "</div>";
+
+    document.body.appendChild(wrapper);
+    return wrapper;
+  };
+
+  const initSeeMorePetsModal = () => {
+    const openButton = document.getElementById("open-more-pets-modal");
+
+    if (!openButton) {
+      return;
+    }
+
+    const galleryData = buildMorePetGalleryData();
+    const modal = document.querySelector(".more-pets-modal") ?? buildMorePetsModal();
+    const closeButton = modal.querySelector(".more-pets-close");
+    const backdrop = modal.querySelector(".modal-backdrop");
+    const grid = modal.querySelector("#more-pets-grid");
+    const prevButton = modal.querySelector("#more-pets-prev");
+    const nextButton = modal.querySelector("#more-pets-next");
+    const pageStatus = modal.querySelector("#more-pets-page-status");
+
+    const pageSize = 6;
+    const totalPages = Math.max(1, Math.ceil(galleryData.length / pageSize));
+    let currentPage = 1;
+    let lastFocusedElement = null;
+
+    const renderGalleryPage = () => {
+      const start = (currentPage - 1) * pageSize;
+      const pageItems = galleryData.slice(start, start + pageSize);
+
+      const cards = pageItems.map((item) => {
+        const card = document.createElement("article");
+        card.className = "card more-pets-card";
+
+        const figure = document.createElement("figure");
+        const image = document.createElement("img");
+        image.src = item.imageSrc;
+        image.alt = item.imageAlt;
+        image.width = 200;
+        image.height = 200;
+
+        const figcaption = document.createElement("figcaption");
+        figcaption.textContent = item.typeLabel;
+
+        figure.append(image, figcaption);
+        card.appendChild(figure);
+        return card;
+      });
+
+      grid.replaceChildren(...cards);
+      pageStatus.textContent = `Page ${currentPage} of ${totalPages}`;
+      prevButton.disabled = currentPage === 1;
+      nextButton.disabled = currentPage === totalPages;
+    };
+
+    const showModal = () => {
+      lastFocusedElement = document.activeElement;
+      currentPage = 1;
+      renderGalleryPage();
+      openModal(modal, closeButton);
+    };
+
+    const hideModal = () => closeModal(modal, lastFocusedElement);
+
+    if (openButton.dataset.morePetsBound !== "true") {
+      openButton.dataset.morePetsBound = "true";
+      openButton.addEventListener("click", showModal);
+    }
+
+    if (closeButton.dataset.morePetsBound !== "true") {
+      closeButton.dataset.morePetsBound = "true";
+      closeButton.addEventListener("click", hideModal);
+    }
+
+    if (backdrop.dataset.morePetsBound !== "true") {
+      backdrop.dataset.morePetsBound = "true";
+      backdrop.addEventListener("click", (event) => {
+        if (event.target === backdrop) {
+          hideModal();
+        }
+      });
+    }
+
+    if (prevButton.dataset.morePetsBound !== "true") {
+      prevButton.dataset.morePetsBound = "true";
+      prevButton.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage -= 1;
+          renderGalleryPage();
+        }
+      });
+    }
+
+    if (nextButton.dataset.morePetsBound !== "true") {
+      nextButton.dataset.morePetsBound = "true";
+      nextButton.addEventListener("click", () => {
+        if (currentPage < totalPages) {
+          currentPage += 1;
+          renderGalleryPage();
+        }
+      });
+    }
+
+    if (!modal.dataset.escapeBound) {
+      modal.dataset.escapeBound = "true";
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !modal.hasAttribute("hidden")) {
+          hideModal();
+        }
+      });
+    }
   };
 
   const activateTab = (tabs, targetTab) => {
