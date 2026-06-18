@@ -1,4 +1,7 @@
 (() => {
+  const allowedSharedComponents = new Set(["header", "footer"]);
+  const componentHtmlCache = new Map();
+
   const resolveCurrentPageName = () => {
     const pathname = globalThis.location?.pathname ?? "";
     const lastSegment = pathname.split("/").pop() ?? "";
@@ -31,17 +34,29 @@
     await Promise.all(
       mounts.map(async (mount) => {
         const componentName = mount.dataset.component;
-        if (!componentName) {
+        if (!componentName || !allowedSharedComponents.has(componentName)) {
           return;
         }
 
         try {
-          const response = await fetch(`./components/${componentName}.html`);
-          if (!response.ok) {
-            return;
+          let componentMarkup = componentHtmlCache.get(componentName);
+
+          if (!componentMarkup) {
+            const response = await fetch(`./components/${componentName}.html`, {
+              cache: "force-cache",
+              credentials: "same-origin"
+            });
+
+            const contentType = response.headers.get("content-type") ?? "";
+            if (!response.ok || !contentType.includes("text/html")) {
+              return;
+            }
+
+            componentMarkup = await response.text();
+            componentHtmlCache.set(componentName, componentMarkup);
           }
 
-          mount.outerHTML = await response.text();
+          mount.outerHTML = componentMarkup;
 
           if (componentName === "header") {
             const headerNode = document.querySelector("header.navbar");
