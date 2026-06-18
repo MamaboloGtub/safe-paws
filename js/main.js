@@ -1,5 +1,64 @@
 (() => {
-  const init = () => {
+  const resolveCurrentPageName = () => {
+    const pathname = globalThis.location?.pathname ?? "";
+    const lastSegment = pathname.split("/").pop() ?? "";
+    return lastSegment || "index.html";
+  };
+
+  const setActiveNavigationLink = (scope) => {
+    const currentPageName = resolveCurrentPageName();
+    const links = scope.querySelectorAll("nav a[href]");
+
+    links.forEach((link) => {
+      const href = link.getAttribute("href") ?? "";
+      const hrefPageName = href.split("/").pop() ?? "";
+
+      if (hrefPageName === currentPageName) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  const loadSharedComponents = async () => {
+    const mounts = Array.from(document.querySelectorAll("[data-component]"));
+
+    if (!mounts.length) {
+      return;
+    }
+
+    await Promise.all(
+      mounts.map(async (mount) => {
+        const componentName = mount.dataset.component;
+        if (!componentName) {
+          return;
+        }
+
+        try {
+          const response = await fetch(`./components/${componentName}.html`);
+          if (!response.ok) {
+            return;
+          }
+
+          mount.outerHTML = await response.text();
+
+          if (componentName === "header") {
+            const headerNode = document.querySelector("header.navbar");
+            if (headerNode) {
+              setActiveNavigationLink(headerNode);
+            }
+          }
+        } catch (error) {
+          // Keep page functional even if component loading fails.
+          console.warn(`Unable to load ${componentName} component.`, error);
+        }
+      })
+    );
+  };
+
+  const init = async () => {
+    await loadSharedComponents();
     initTabs();
     initRevealAnimations();
     initFaqAccordion();
@@ -142,6 +201,8 @@
     image.alt = pet.imageAlt;
     image.width = 200;
     image.height = 200;
+    image.loading = "lazy";
+    image.decoding = "async";
     const figcaption = document.createElement("figcaption");
     figcaption.textContent = `${pet.name} - ${pet.breed}, ${pet.ageLabel}`;
     figure.append(image, figcaption);
@@ -328,6 +389,8 @@
         image.alt = item.imageAlt;
         image.width = 200;
         image.height = 200;
+        image.loading = "lazy";
+        image.decoding = "async";
 
         const figcaption = document.createElement("figcaption");
         figcaption.textContent = item.typeLabel;
@@ -551,7 +614,7 @@
       '<div class="modal-backdrop" role="presentation">' +
       '<section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pet-modal-title">' +
       '<button type="button" class="modal-close" aria-label="Close quick view">x</button>' +
-      '<img class="modal-image" src="" alt="" />' +
+      '<img class="modal-image" src="" alt="" loading="lazy" decoding="async" />' +
       '<h3 id="pet-modal-title" class="modal-title"></h3>' +
       '<p class="modal-meta"></p>' +
       '<p class="modal-description"></p>' +
