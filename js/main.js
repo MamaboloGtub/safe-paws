@@ -1,6 +1,8 @@
 (() => {
   const allowedSharedComponents = new Set(["header", "footer"]);
   const componentHtmlCache = new Map();
+  const submissionLogStorageKey = "safePawsRecentEnquiries";
+  const maxSubmissionLogEntries = 8;
 
   const resolveCurrentPageName = () => {
     const pathname = globalThis.location?.pathname ?? "";
@@ -746,6 +748,80 @@
     form.prepend(status);
   };
 
+  const fieldErrorId = (field) => {
+    const stableKey = field.id || field.name || "field";
+    return `${stableKey}-error`;
+  };
+
+  const getFieldErrorNode = (field) => {
+    const id = fieldErrorId(field);
+    let errorNode = document.getElementById(id);
+
+    if (!errorNode) {
+      errorNode = document.createElement("small");
+      errorNode.id = id;
+      errorNode.className = "field-error";
+      errorNode.setAttribute("aria-live", "polite");
+      field.after(errorNode);
+    }
+
+    return errorNode;
+  };
+
+  const setFieldError = (field, message) => {
+    const errorNode = getFieldErrorNode(field);
+    errorNode.textContent = message;
+    field.classList.add("input-error");
+    field.setAttribute("aria-invalid", "true");
+
+    const describedBy = field.getAttribute("aria-describedby") ?? "";
+    const tokens = describedBy.split(" ").filter(Boolean);
+    const errorId = fieldErrorId(field);
+    if (!tokens.includes(errorId)) {
+      tokens.push(errorId);
+      field.setAttribute("aria-describedby", tokens.join(" "));
+    }
+  };
+
+  const clearFieldError = (field) => {
+    const errorNode = document.getElementById(fieldErrorId(field));
+    if (errorNode) {
+      errorNode.textContent = "";
+    }
+
+    field.classList.remove("input-error");
+    field.removeAttribute("aria-invalid");
+  };
+
+  const defaultFieldErrorMessage = (field) => {
+    const label =
+      field.getAttribute("aria-label") ||
+      field.closest("p")?.querySelector(`label[for="${field.id}"]`)?.textContent?.replace("*", "").trim() ||
+      "This field";
+
+    if (field.validity.valueMissing) {
+      return `${label} is required.`;
+    }
+
+    if (field.validity.typeMismatch && field.type === "email") {
+      return "Please enter a valid email address.";
+    }
+
+    if (field.validity.patternMismatch && field.name === "phone") {
+      return "Please enter a valid phone number (7 to 15 digits, optional +, spaces, or -).";
+    }
+
+    if (field.validity.tooShort) {
+      return `${label} is too short.`;
+    }
+
+    if (field.validity.rangeUnderflow) {
+      return `${label} is below the allowed minimum.`;
+    }
+
+    return `Please enter a valid value for ${label.toLowerCase()}.`;
+  };
+
   const enhanceTextareaCounter = (form) => {
     const textareas = form.querySelectorAll("textarea");
 
@@ -770,30 +846,253 @@
     return Array.from(radioGroup).some((radio) => radio.checked);
   };
 
+  const isConditionalFieldValid = (form) => {
+    const enquiryType = form.querySelector("#enquiry-type");
+    const animalName = form.querySelector("#animal-name");
+
+    if (!enquiryType || !animalName) {
+      return true;
+    }
+
+    if (enquiryType.value !== "animal") {
+      clearFieldError(animalName);
+      return true;
+    }
+
+    if (animalName.value.trim().length > 1) {
+      clearFieldError(animalName);
+      return true;
+    }
+
+    setFieldError(animalName, "Please enter the animal name for this enquiry type.");
+    return false;
+  };
+
+  const clearAllFieldErrors = (form) => {
+    form.querySelectorAll("input, select, textarea").forEach((field) => clearFieldError(field));
+  };
+
+  const refreshCounters = (form) => {
+    form.querySelectorAll("textarea").forEach((textarea) => {
+      textarea.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+  };
+
   const validateFormFields = (form) => {
     const fields = form.querySelectorAll("input, select, textarea");
     let firstInvalidField = null;
 
     fields.forEach((field) => {
+      clearFieldError(field);
+
       const invalid = field.type === "radio" && field.required
         ? !isRadioGroupValid(form, field)
         : !field.checkValidity();
 
       if (invalid) {
-        field.classList.add("input-error");
-        field.setAttribute("aria-invalid", "true");
+        const message = defaultFieldErrorMessage(field);
+        setFieldError(field, message);
         firstInvalidField ??= field;
-      } else {
-        field.classList.remove("input-error");
-        field.removeAttribute("aria-invalid");
       }
     });
+
+    if (!isConditionalFieldValid(form)) {
+      const conditionalField = form.querySelector("#animal-name");
+      firstInvalidField ??= conditionalField;
+    }
 
     return firstInvalidField;
   };
 
+  const shouldSubmitLocally = (form) => {
+    const mode = (form.dataset.submitMode ?? "").trim();
+
+    if (mode === "local") {
+      return true;
+    }
+
+    const action = (form.getAttribute("action") ?? "").trim();
+    return action === "" || action === "#";
+  };
+
+  const isSubmissionLoggingEnabled = (form) =>
+    (form.dataset.logSubmissions ?? "").trim() === "true";
+
+  const loadSubmissionLog = () => {
+    try {
+      const raw = globalThis.localStorage?.getItem(submissionLogStorageKey);
+      if (!raw) {
+        return [];
+      }
+
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  };
+
+  const saveSubmissionLog = (entries) => {
+    try {
+      globalThis.localStorage?.setItem(
+        submissionLogStorageKey,
+        JSON.stringify(entries.slice(0, maxSubmissionLogEntries))
+      );
+    } catch {
+      // Ignore storage errors (private mode, quota limits, etc.)
+    }
+  };
+
+  const trimValue = (value, maxLength = 120) => {
+    const normalized = String(value ?? "").trim();
+    return normalized.length > maxLength
+      ? `${normalized.slice(0, maxLength - 1)}...`
+      : normalized;
+  };
+
+  const buildSubmissionRecord = (form) => {
+    const name = trimValue(form.querySelector('[name="fullname"]')?.value, 60);
+    const email = trimValue(form.querySelector('[name="email"]')?.value, 100);
+    const subject = trimValue(
+      form.querySelector('[name="subject"], [name="enquiryType"]')?.value,
+      60
+    );
+    const message = trimValue(form.querySelector('[name="message"]')?.value, 80);
+
+    return {
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      formId: form.id || "form",
+      submittedAt: new Date().toISOString(),
+      name,
+      email,
+      subject,
+      message
+    };
+  };
+
+  const appendSubmissionRecord = (record) => {
+    const existing = loadSubmissionLog();
+    const next = [record, ...existing].slice(0, maxSubmissionLogEntries);
+    saveSubmissionLog(next);
+    return next;
+  };
+
+  const formatSubmissionDate = (isoDate) => {
+    const date = new Date(isoDate);
+    if (Number.isNaN(date.getTime())) {
+      return "Unknown time";
+    }
+
+    return new Intl.DateTimeFormat(undefined, {
+      dateStyle: "medium",
+      timeStyle: "short"
+    }).format(date);
+  };
+
+  const ensureSubmissionLogContainer = (form) => {
+    const existing = form.parentElement?.querySelector(".submission-log");
+    if (existing) {
+      return existing;
+    }
+
+    const section = document.createElement("section");
+    section.className = "submission-log";
+    section.setAttribute("aria-live", "polite");
+    section.innerHTML =
+      '<h3 class="submission-log-title">Recent Enquiries (Demo)</h3>' +
+      '<p class="submission-log-intro">Stored locally in this browser for demo purposes.</p>' +
+      '<ul class="submission-log-list"></ul>' +
+      '<p class="submission-log-empty" hidden>No recent enquiries yet.</p>' +
+      '<p><button type="button" class="submission-log-clear">Clear log</button></p>';
+
+    form.after(section);
+    return section;
+  };
+
+  const renderSubmissionLog = (form, entries) => {
+    const container = ensureSubmissionLogContainer(form);
+    const list = container.querySelector(".submission-log-list");
+    const emptyState = container.querySelector(".submission-log-empty");
+    const clearButton = container.querySelector(".submission-log-clear");
+
+    const filteredEntries = entries.filter((entry) =>
+      (entry.formId ?? "") === (form.id || "form")
+    );
+
+    if (!filteredEntries.length) {
+      list?.replaceChildren();
+      if (emptyState) {
+        emptyState.hidden = false;
+      }
+      if (clearButton) {
+        clearButton.disabled = true;
+      }
+      return;
+    }
+
+    const items = filteredEntries.map((entry) => {
+      const item = document.createElement("li");
+      item.className = "submission-log-item";
+
+      const labelParts = [
+        entry.name ? `Name: ${entry.name}` : "",
+        entry.email ? `Email: ${entry.email}` : "",
+        entry.subject ? `Type: ${entry.subject}` : "",
+        entry.message ? `Message: ${entry.message}` : ""
+      ].filter(Boolean);
+
+      item.innerHTML =
+        `<strong>${formatSubmissionDate(entry.submittedAt)}</strong>` +
+        `<br>${labelParts.join(" | ")}`;
+
+      return item;
+    });
+
+    list?.replaceChildren(...items);
+    if (emptyState) {
+      emptyState.hidden = true;
+    }
+    if (clearButton) {
+      clearButton.disabled = false;
+    }
+
+    if (clearButton?.dataset.bound !== "true") {
+      clearButton.dataset.bound = "true";
+      clearButton.addEventListener("click", () => {
+        const current = loadSubmissionLog().filter(
+          (entry) => (entry.formId ?? "") !== (form.id || "form")
+        );
+        saveSubmissionLog(current);
+        renderSubmissionLog(form, current);
+      });
+    }
+  };
+
+  const clearErrorStatus = (statusNode) => {
+    if (!statusNode?.classList.contains("is-error")) {
+      return;
+    }
+
+    statusNode.textContent = "";
+    statusNode.classList.remove("is-error");
+  };
+
+  const bindFieldValidationHandlers = (form, statusNode) => {
+    const fields = form.querySelectorAll("input, select, textarea");
+
+    fields.forEach((field) => {
+      const clearOnEdit = () => {
+        clearFieldError(field);
+        clearErrorStatus(statusNode);
+      };
+
+      field.addEventListener("input", clearOnEdit);
+      field.addEventListener("change", clearOnEdit);
+    });
+  };
+
   const initFormEnhancements = () => {
-    const forms = document.querySelectorAll("form");
+    const forms = document.querySelectorAll("form.form");
 
     if (!forms.length) {
       return;
@@ -803,8 +1102,15 @@
       enhanceTextareaCounter(form);
       addStatusRegion(form);
 
+      const statusNode = form.querySelector(".form-status");
+      bindFieldValidationHandlers(form, statusNode);
+
+      if (isSubmissionLoggingEnabled(form)) {
+        renderSubmissionLog(form, loadSubmissionLog());
+      }
+
       form.addEventListener("submit", (event) => {
-        const statusNode = form.querySelector(".form-status");
+        clearAllFieldErrors(form);
         const firstInvalidField = validateFormFields(form);
 
         if (firstInvalidField) {
@@ -822,14 +1128,32 @@
           statusNode.classList.remove("is-error");
         }
 
-        const action = (form.getAttribute("action") ?? "").trim();
-        if (action === "" || action === "#") {
+        if (shouldSubmitLocally(form)) {
           event.preventDefault();
+
+          if (isSubmissionLoggingEnabled(form)) {
+            const record = buildSubmissionRecord(form);
+            const updatedLog = appendSubmissionRecord(record);
+            renderSubmissionLog(form, updatedLog);
+          }
+
           form.reset();
+          clearAllFieldErrors(form);
+          refreshCounters(form);
           if (statusNode) {
             statusNode.textContent = "Thanks, your message has been captured.";
             statusNode.classList.remove("is-error");
           }
+        }
+      });
+
+      form.addEventListener("reset", () => {
+        clearAllFieldErrors(form);
+        refreshCounters(form);
+
+        if (statusNode) {
+          statusNode.textContent = "";
+          statusNode.classList.remove("is-error");
         }
       });
     });

@@ -31,12 +31,12 @@
         <h1 id="enquiry-main-title">General Enquiry Form</h1>
         <p>Have a question about our animals, services, or how to get involved? Please fill out the form below and we'll respond as soon as possible.</p>
 
-        <form class="form" action="#" method="post">
+        <form id="enquiry-form" class="form" action="#" method="post" data-submit-mode="local" data-log-submissions="true">
             <fieldset>
                 <legend>Contact Information</legend>
                 <p class="form-group">
                     <label for="fullname">Full Name: <span aria-label="required">*</span></label>
-                    <input type="text" id="fullname" name="fullname" required>
+                    <input type="text" id="fullname" name="fullname" minlength="2" required>
                 </p>
                 <p class="form-group">
                     <label for="email">Email Address: <span aria-label="required">*</span></label>
@@ -44,7 +44,7 @@
                 </p>
                 <p class="form-group">
                     <label for="phone">Phone Number: <span aria-label="required">*</span></label>
-                    <input type="tel" id="phone" name="phone" pattern="[0-9\s\-\+]+" required>
+                    <input type="tel" id="phone" name="phone" pattern="\+?[0-9\s\-]{7,15}" title="Use 7 to 15 digits, optionally with +, spaces, or -" required>
                 </p>
             </fieldset>
 
@@ -70,7 +70,7 @@
                 </p>
                 <p class="form-group">
                     <label for="message">Your Message: <span aria-label="required">*</span></label>
-                    <textarea id="message" name="message" rows="6" placeholder="Please provide details about your enquiry..." style="font-style: italic; color: green;" required></textarea>
+                    <textarea id="message" name="message" rows="6" minlength="10" placeholder="Please provide details about your enquiry..." style="font-style: italic; color: green;" required></textarea>
                 </p>
             </fieldset>
 
