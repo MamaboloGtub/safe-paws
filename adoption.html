@@ -58,119 +58,40 @@
         <section id="available-pets" aria-labelledby="pets-title">
             <h2 id="pets-title">Available Pets</h2>
 
-            <section aria-labelledby="dogs-title">
-                <h3 id="dogs-title">Dogs</h3>
-                <div class="cards adoption-cards">
-                <article class="card adoption-card">
-                    <h4>Buddy</h4>
-                    <figure>
-                        <img src="./images/dogs/labrador.jpg" alt="Buddy, a friendly golden/yellow Labrador" width="200" height="200">
-                        <figcaption>Buddy - Labrador, 2 years old</figcaption>
-                    </figure>
-                    <p><strong>Breed:</strong> Labrador Retriever | <strong>Age:</strong> 2 years | <strong>Gender:</strong> Male</p>
-                    <p>A friendly, energetic dog who loves playing fetch and long walks. Great with children and other dogs. Buddy is fully vaccinated and house-trained.</p>
-                    <p><a href="enquiry.html">Enquire about Buddy</a></p>
-                </article>
+            <form id="pet-directory-controls" class="pet-directory-controls" aria-label="Find your ideal pet">
+                <p class="control-field">
+                    <label for="pet-search">Search by name, breed, or description</label>
+                    <input type="search" id="pet-search" name="petSearch" placeholder="Try: Luna, Rabbit, friendly" autocomplete="off">
+                </p>
+                <p class="control-field">
+                    <label for="pet-type-filter">Pet Type</label>
+                    <select id="pet-type-filter" name="petTypeFilter">
+                        <option value="all">All Types</option>
+                        <option value="dog">Dogs</option>
+                        <option value="cat">Cats</option>
+                        <option value="rabbit">Rabbits and Small Pets</option>
+                    </select>
+                </p>
+                <p class="control-field">
+                    <label for="pet-sort">Sort By</label>
+                    <select id="pet-sort" name="petSort">
+                        <option value="name-asc">Name (A to Z)</option>
+                        <option value="name-desc">Name (Z to A)</option>
+                        <option value="age-asc">Age (Youngest first)</option>
+                        <option value="age-desc">Age (Oldest first)</option>
+                    </select>
+                </p>
+            </form>
 
-                <article class="card adoption-card">
-                    <h4>Max</h4>
-                    <figure>
-                        <img src="./images/dogs/dachshund.jpg" alt="Max, a young dachshund puppy" width="200" height="200">
-                        <figcaption>Max - Dachshund, 1 year old</figcaption>
-                    </figure>
-                    <p><strong>Breed:</strong> Dachshund | <strong>Age:</strong> 1 year | <strong>Gender:</strong> Male</p>
-                    <p>Friendly and playful. Good with children and small families. Max enjoys indoor and outdoor activities and responds well to training.</p>
-                    <p><a href="enquiry.html">Enquire about Max</a></p>
-                </article>
-
-                <article class="card adoption-card">
-                    <h4>Luna</h4>
-                    <figure>
-                        <img src="./images/dogs/jamie-street.jpg" alt="Luna, a rescue dog outside" width="200" height="200">
-                        <figcaption>Luna - Mixed Breed, 3 years old</figcaption>
-                    </figure>
-                    <p><strong>Breed:</strong> Mixed | <strong>Age:</strong> 3 years | <strong>Gender:</strong> Female</p>
-                    <p>A calm and gentle rescue dog looking for a quiet home. Luna is quiet, patient, and enjoys short daily walks. Perfect for seniors or small families.</p>
-                    <p><a href="enquiry.html">Enquire about Luna</a></p>
-                </article>
-                </div>
+            <section class="more-pets-cta" aria-labelledby="see-more-pets-title">
+                <h3 id="see-more-pets-title">See More Pets</h3>
+                <p>Open our extra gallery to browse additional dogs, cats, and rabbits.</p>
+                <p>
+                    <button type="button" id="open-more-pets-modal" class="more-pets-open-btn">See More Pets</button>
+                </p>
             </section>
-
-            <section aria-labelledby="cats-title">
-                <h3 id="cats-title">Cats</h3>
-                <div class="cards adoption-cards">
-                <article class="card adoption-card">
-                    <h4>Mittens</h4>
-                    <figure>
-                        <img src="./images/cats/annabel.jpg" alt="Mittens, a calm cat indoors" width="200" height="200">
-                        <figcaption>Mittens - Tabby, 2 years old</figcaption>
-                    </figure>
-                    <p><strong>Breed:</strong> Tabby | <strong>Age:</strong> 2 years | <strong>Gender:</strong> Female</p>
-                    <p>A playful tabby cat who loves attention. Mittens enjoys interactive play and would thrive in an active home. She has been socialized with children.</p>
-                    <p><a href="enquiry.html">Enquire about Mittens</a></p>
-                </article>
-
-                <article class="card adoption-card">
-                    <h4>Whiskers</h4>
-                    <figure>
-                        <img src="./images/cats/brisch.jpg" alt="Whiskers, an affectionate cat" width="200" height="200">
-                        <figcaption>Whiskers - Black & White, 1 year old</figcaption>
-                    </figure>
-                    <p><strong>Breed:</strong> Black & White | <strong>Age:</strong> 1 year | <strong>Gender:</strong> Male</p>
-                    <p>Affectionate and cuddly, Whiskers loves sitting on laps. He's good with other cats and enjoys a calm, loving environment.</p>
-                    <p><a href="enquiry.html">Enquire about Whiskers</a></p>
-                </article>
-
-                <article class="card adoption-card">
-                    <h4>Shadow</h4>
-                    <figure>
-                        <img src="./images/cats/loan-7AIDE8PrvA0-unsplash.jpg" alt="Shadow, a cat with bright eyes" width="200" height="200">
-                        <figcaption>Shadow - Gray, 3 years old</figcaption>
-                    </figure>
-                    <p><strong>Breed:</strong> Gray Domestic | <strong>Age:</strong> 3 years | <strong>Gender:</strong> Female</p>
-                    <p>An intelligent and independent cat. Shadow enjoys quiet spaces and is perfect for single professionals or elderly owners. She is calm and well-mannered.</p>
-                    <p><a href="enquiry.html">Enquire about Shadow</a></p>
-                </article>
-                </div>
-            </section>
-
-            <section aria-labelledby="rabbits-title">
-                <h3 id="rabbits-title">Rabbits and Small Pets</h3>
-                <div class="cards adoption-cards">
-                <article class="card adoption-card">
-                    <h4>Hoppy</h4>
-                    <figure>
-                        <img src="./images/hamster_rabbit/rabbit_carrot.jpg" alt="Hoppy, a rabbit eating a carrot" width="200" height="200">
-                        <figcaption>Hoppy - Rabbit, 1 year old</figcaption>
-                    </figure>
-                    <p><strong>Species:</strong> Rabbit | <strong>Age:</strong> 1 year | <strong>Gender:</strong> Male</p>
-                    <p>A friendly rabbit who enjoys fresh vegetables and gentle handling. Hoppy is house-trained and can be let out to play in a safe area.</p>
-                    <p><a href="enquiry.html">Enquire about Hoppy</a></p>
-                </article>
-
-                <article class="card adoption-card">
-                    <h4>Clover</h4>
-                    <figure>
-                        <img src="./images/hamster_rabbit/rabbit_grass.jpg" alt="Clover, a rabbit in the grass" width="200" height="200">
-                        <figcaption>Clover - Rabbit, 8 months old</figcaption>
-                    </figure>
-                    <p><strong>Species:</strong> Rabbit | <strong>Age:</strong> 8 months | <strong>Gender:</strong> Female</p>
-                    <p>Gentle and curious, Clover loves exploring her surroundings. She's suitable for small families and enjoys interactive play with safe toys.</p>
-                    <p><a href="enquiry.html">Enquire about Clover</a></p>
-                </article>
-
-                <article class="card adoption-card">
-                    <h4>Snowball</h4>
-                    <figure>
-                        <img src="./images/hamster_rabbit/stockvaul_rabbit.jpg" alt="Snowball, a white rabbit" width="200" height="200">
-                        <figcaption>Snowball - Rabbit, 2 years old</figcaption>
-                    </figure>
-                    <p><strong>Species:</strong> Rabbit | <strong>Age:</strong> 2 years | <strong>Gender:</strong> Female</p>
-                    <p>A calm and mature rabbit, perfect for first-time small pet owners. Snowball enjoys a quiet routine and gentle interaction.</p>
-                    <p><a href="enquiry.html">Enquire about Snowball</a></p>
-                </article>
-                </div>
-            </section>
+            <p id="pet-results-summary" class="pet-results-summary" aria-live="polite"></p>
+            <div id="pet-results" class="cards adoption-cards" data-pet-results></div>
         </section>
 
         </section>

@@ -18,6 +18,117 @@
     margin-left: 250px;
 }
 
+.pet-directory-controls {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 14px;
+	padding: 16px;
+	margin-bottom: 16px;
+	background: #ffffff;
+	border: 1px solid #dcead8;
+	border-radius: var(--radius);
+}
+
+.control-field {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.control-field label {
+	font-weight: 600;
+}
+
+.control-field input,
+.control-field select {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #dfe6e9;
+	border-radius: 8px;
+	font-family: inherit;
+}
+
+.pet-results-summary {
+	font-weight: 600;
+	margin: 0 0 16px;
+}
+
+.more-pets-cta {
+	background: #ffffff;
+	border: 1px solid #dcead8;
+	border-radius: var(--radius);
+	padding: 14px;
+	margin: 0 0 16px;
+}
+
+.more-pets-cta h3 {
+	margin: 0 0 6px;
+}
+
+.more-pets-cta p {
+	margin: 0 0 10px;
+}
+
+.more-pets-open-btn {
+	min-width: 180px;
+}
+
+.more-pets-modal-card {
+	width: min(900px, 100%);
+}
+
+.more-pets-intro {
+	margin: 0 0 14px;
+}
+
+.more-pets-grid {
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	margin-bottom: 14px;
+}
+
+.more-pets-card {
+	background: #f7fbf8;
+	padding: 10px;
+}
+
+.more-pets-card figure {
+	margin: 0;
+}
+
+.more-pets-card img {
+	width: 100%;
+	height: 170px;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.more-pets-pagination {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+}
+
+.more-pets-page-status {
+	margin: 0;
+	font-weight: 600;
+}
+
+.pagination-arrow {
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	font-size: 18px;
+	line-height: 1;
+	border-radius: 50%;
+}
+
+.pagination-arrow:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+}
+
 .adoption-cards {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -78,6 +189,14 @@
 	#available-pets > section > h3 {
 		display: block;
 		margin-bottom: 14px;
+	}
+
+	.pet-directory-controls {
+		padding: 12px;
+	}
+
+	.more-pets-pagination {
+		justify-content: center;
 	}
 
 	.pet_interest {
