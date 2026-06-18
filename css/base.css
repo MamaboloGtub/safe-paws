@@ -182,11 +182,15 @@ main.page-layout {
   justify-content: flex-start;
   align-items: center;
   gap: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background: var(--soft-green);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 12px 20px;
   margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(41, 71, 90, 0.08);
 }
 
 .navbar .logo {
