@@ -50,6 +50,8 @@ safe-paws/
 |- contact.html
 |- enquiry.html
 |- faq.html
+|- robots.txt
+|- sitemap.xml
 |- README.md
 |- PART1.md
 |- PART2.md

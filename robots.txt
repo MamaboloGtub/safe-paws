@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mamabologtub.github.io/safe-paws/sitemap.xml
