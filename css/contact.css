@@ -21,4 +21,32 @@
     margin-top: 30px;
     margin-bottom: 15px;
 }
+
+.contact-map-section {
+    margin-top: 24px;
+}
+
+.contact-map-section h2 {
+    margin-bottom: 10px;
+}
+
+.contact-map {
+    width: 100%;
+    min-height: 320px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #e8f3f8;
+}
+
+.map-external-link {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .contact-map {
+        min-height: 260px;
+    }
+}
 /* Add contact page overrides below this line */
