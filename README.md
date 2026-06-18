@@ -52,13 +52,7 @@ safe-paws/
 |- faq.html
 |- robots.txt
 |- sitemap.xml
-|- README.md
-|- PART1.md
-|- PART2.md
-|- PROJECT_PLAN.md
-|- css/
-|- js/
-|- images/
+es/
 	|- cats/
 	|- dogs/
 	|- hamster_rabbit/

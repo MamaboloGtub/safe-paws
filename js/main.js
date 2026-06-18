@@ -74,8 +74,129 @@
     );
   };
 
+  const loadStylesheetOnce = (href, id) =>
+    new Promise((resolve, reject) => {
+      const existing = document.getElementById(id);
+      if (existing) {
+        resolve();
+        return;
+      }
+
+      const stylesheet = document.createElement("link");
+      stylesheet.id = id;
+      stylesheet.rel = "stylesheet";
+      stylesheet.href = href;
+      stylesheet.onload = () => resolve();
+      stylesheet.onerror = () => reject(new Error(`Unable to load stylesheet: ${href}`));
+      document.head.appendChild(stylesheet);
+    });
+
+  const loadScriptOnce = (src, id) =>
+    new Promise((resolve, reject) => {
+      const existing = document.getElementById(id);
+      if (existing) {
+        if (globalThis.L) {
+          resolve();
+          return;
+        }
+
+        existing.addEventListener("load", () => resolve(), { once: true });
+        existing.addEventListener(
+          "error",
+          () => reject(new Error(`Unable to load script: ${src}`)),
+          { once: true }
+        );
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.id = id;
+      script.src = src;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error(`Unable to load script: ${src}`));
+      document.head.appendChild(script);
+    });
+
+  const initContactMap = () => {
+    const mapSection = document.getElementById("contact-map-section");
+    const mapNode = document.getElementById("contact-map");
+
+    if (!mapSection || !mapNode) {
+      return;
+    }
+
+    let hasInitialized = false;
+
+    const startMap = async () => {
+      if (hasInitialized) {
+        return;
+      }
+
+      hasInitialized = true;
+
+      try {
+        await loadStylesheetOnce(
+          "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
+          "leaflet-stylesheet"
+        );
+        await loadScriptOnce(
+          "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
+          "leaflet-script"
+        );
+
+        if (!globalThis.L) {
+          return;
+        }
+
+        const lat = Number(mapNode.dataset.lat ?? "-23.9045");
+        const lng = Number(mapNode.dataset.lng ?? "29.4689");
+        const zoom = Number(mapNode.dataset.zoom ?? "13");
+
+        const leafletMap = globalThis.L.map(mapNode).setView([lat, lng], zoom);
+
+        globalThis.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(leafletMap);
+
+        globalThis.L
+          .marker([lat, lng])
+          .addTo(leafletMap)
+          .bindPopup("Safe Paws Rescue Center, Polokwane")
+          .openPopup();
+
+        requestAnimationFrame(() => leafletMap.invalidateSize());
+      } catch (error) {
+        console.warn("Unable to initialize contact map.", error);
+      }
+    };
+
+    if (!("IntersectionObserver" in globalThis)) {
+      startMap();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        const visibleEntry = entries.find((entry) => entry.isIntersecting);
+        if (!visibleEntry) {
+          return;
+        }
+
+        currentObserver.unobserve(mapSection);
+        startMap();
+      },
+      { rootMargin: "200px 0px", threshold: 0.1 }
+    );
+
+    observer.observe(mapSection);
+  };
+
   const init = async () => {
     await loadSharedComponents();
+    initContactMap();
     initTabs();
     initRevealAnimations();
     initFaqAccordion();
