@@ -18,6 +18,42 @@
     margin-left: 250px;
 }
 
+.pet-directory-controls {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 14px;
+	padding: 16px;
+	margin-bottom: 16px;
+	background: #ffffff;
+	border: 1px solid #dcead8;
+	border-radius: var(--radius);
+}
+
+.control-field {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.control-field label {
+	font-weight: 600;
+}
+
+.control-field input,
+.control-field select {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #dfe6e9;
+	border-radius: 8px;
+	font-family: inherit;
+}
+
+.pet-results-summary {
+	font-weight: 600;
+	margin: 0 0 16px;
+}
+
 .adoption-cards {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -78,6 +114,10 @@
 	#available-pets > section > h3 {
 		display: block;
 		margin-bottom: 14px;
+	}
+
+	.pet-directory-controls {
+		padding: 12px;
 	}
 
 	.pet_interest {

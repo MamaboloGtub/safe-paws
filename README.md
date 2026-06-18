@@ -22,6 +22,10 @@ Current status: Part 1 implementation (HTML-only foundation, no CSS and no JavaS
 ## ChangeLog 
 Find the changelog here: [release](https://github.com/MamaboloGtub/safe-paws/releases)
 
+## References
+
+- [Image Source References (Harvard Anglia)](REFERENCES.md)
+
 ## Part 1 Scope
 
 Part 1 details were moved into a dedicated document:
