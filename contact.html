@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/components.css">
     <link rel="stylesheet" href="./css/contact.css">
+    <!-- EmailJS SDK for sending contact form emails -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("jgTOZst2S6ywzQusc");
+        })();
+    </script>
     <style>
         textarea#message {
             font-style: italic;

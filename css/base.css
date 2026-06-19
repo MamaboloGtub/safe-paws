@@ -519,6 +519,53 @@ body.modal-open {
   }
 }
 
+/* =========================
+   SNACKBAR NOTIFICATIONS
+========================= */
+.snackbar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  min-width: 300px;
+  max-width: 90vw;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.snackbar.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.snackbar--success {
+  background: #2e7d32;
+}
+
+.snackbar--redirect {
+  background: #e65100;
+}
+
+.snackbar--error {
+  background: #b00020;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snackbar {
+    transition: none;
+  }
+}
+
 @media (max-width: 480px) {
   .tab-list {
     flex-direction: column;
