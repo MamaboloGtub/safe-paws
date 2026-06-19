@@ -1212,6 +1212,219 @@
     });
   };
 
+  // =========================================================================
+  // SNACKBAR NOTIFICATION SYSTEM
+  // =========================================================================
+  let activeSnackbarTimer = null;
+
+  const showSnackbar = (message, type = "success", duration = 4000) => {
+    // type: "success" (green), "redirect" (orange), "error" (red)
+    const existing = document.querySelector(".snackbar");
+    if (existing) {
+      existing.remove();
+    }
+
+    if (activeSnackbarTimer) {
+      clearTimeout(activeSnackbarTimer);
+      activeSnackbarTimer = null;
+    }
+
+    const snackbar = document.createElement("div");
+    snackbar.className = `snackbar snackbar--${type}`;
+    snackbar.setAttribute("role", "alert");
+    snackbar.setAttribute("aria-live", "assertive");
+    snackbar.textContent = message;
+    document.body.appendChild(snackbar);
+
+    // Trigger reflow then show
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        snackbar.classList.add("is-visible");
+      });
+    });
+
+    activeSnackbarTimer = setTimeout(() => {
+      snackbar.classList.remove("is-visible");
+      setTimeout(() => snackbar.remove(), 400);
+      activeSnackbarTimer = null;
+    }, duration);
+  };
+
+  // =========================================================================
+  // ENQUIRY RESPONSE DATA — contextual feedback based on enquiry type
+  // =========================================================================
+  const enquiryResponseData = {
+    general: {
+      title: "General Enquiry Received",
+      message: "Thank you for reaching out! Our team will respond within 24-48 business hours. In the meantime, you may find answers on our FAQ page.",
+      details: "No fees apply for general enquiries."
+    },
+    animal: {
+      title: "Animal Enquiry Received",
+      message: "We have noted your interest in a specific animal. A team member will contact you with availability and scheduling details.",
+      details: "Adoption fees: Dogs R800-R1,200 | Cats R400-R700 | Rabbits R200-R400. All pets include vaccinations and medical records."
+    },
+    adoption: {
+      title: "Adoption Process Enquiry",
+      message: "Great news — our adoption process typically takes 5-7 business days from application to finalisation.",
+      details: "Steps: Application → Review → Meet & Greet → Paperwork → Take your pet home. Adoption fees include spaying/neutering, microchipping, and vaccinations."
+    },
+    volunteer: {
+      title: "Volunteer Interest Received",
+      message: "We appreciate your willingness to help! Volunteer slots are available Monday-Saturday.",
+      details: "Available roles: Animal care, dog walking, admin support, event coordination. No cost to volunteer — training is provided on-site."
+    },
+    foster: {
+      title: "Foster Care Enquiry",
+      message: "Fostering helps our animals adjust to home life while awaiting adoption. We provide food and medical supplies at no cost to you.",
+      details: "Foster periods: Typically 2-6 weeks. We cover all veterinary expenses and provide food, bedding, and guidance."
+    },
+    donation: {
+      title: "Donation Enquiry Received",
+      message: "Thank you for considering a donation! Every contribution supports rescue, rehabilitation, and rehoming.",
+      details: "We accept financial donations, pet food, blankets, toys, and medical supplies. All donations are tax-deductible."
+    },
+    feedback: {
+      title: "Feedback Received",
+      message: "We value your feedback and will review it carefully. If follow-up is needed, we will contact you within 48 hours.",
+      details: "All feedback is shared with our management team for continuous improvement."
+    },
+    other: {
+      title: "Enquiry Received",
+      message: "Thank you for your message. Our team will review your enquiry and respond as soon as possible.",
+      details: "Typical response time is 24-48 business hours."
+    }
+  };
+
+  const buildEnquiryResponseHTML = (enquiryType, name) => {
+    const data = enquiryResponseData[enquiryType] || enquiryResponseData.other;
+    const greeting = name ? `Hi ${name}, ` : "";
+
+    return (
+      `<section class="enquiry-response" aria-live="polite">` +
+      `<h3>${data.title}</h3>` +
+      `<p>${greeting}${data.message}</p>` +
+      `<p><strong>Details:</strong> ${data.details}</p>` +
+      `<p><a href="faq.html">Browse FAQs</a> | <a href="adoption.html">View Available Pets</a></p>` +
+      `</section>`
+    );
+  };
+
+  const showEnquiryResponse = (form) => {
+    const enquiryType = form.querySelector('[name="enquiryType"]')?.value ?? "other";
+    const name = form.querySelector('[name="fullname"]')?.value?.trim() ?? "";
+
+    // Remove any previous response
+    const existing = form.parentElement?.querySelector(".enquiry-response");
+    if (existing) {
+      existing.remove();
+    }
+
+    const responseHTML = buildEnquiryResponseHTML(enquiryType, name);
+    form.insertAdjacentHTML("afterend", responseHTML);
+  };
+
+  // =========================================================================
+  // FORM LOADING OVERLAY — shows spinner during async operations
+  // =========================================================================
+  const showFormLoader = (form, text = "Sending your message...") => {
+    // Ensure parent is positioned for overlay
+    form.style.position = "relative";
+
+    const overlay = document.createElement("div");
+    overlay.className = "form-loader-overlay";
+    overlay.innerHTML =
+      '<div class="form-spinner" aria-hidden="true"></div>' +
+      `<p class="form-loader-text">${text}</p>`;
+    overlay.setAttribute("role", "status");
+    overlay.setAttribute("aria-live", "polite");
+    form.appendChild(overlay);
+
+    // Disable submit button
+    const submitBtn = form.querySelector('[type="submit"]');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+    }
+
+    return overlay;
+  };
+
+  const hideFormLoader = (form) => {
+    const overlay = form.querySelector(".form-loader-overlay");
+    if (overlay) {
+      overlay.remove();
+    }
+
+    const submitBtn = form.querySelector('[type="submit"]');
+    if (submitBtn) {
+      submitBtn.disabled = false;
+    }
+
+    form.style.position = "";
+  };
+
+  // =========================================================================
+  // CONTACT FORM — send email via EmailJS
+  // =========================================================================
+  const sendContactEmail = async (form) => {
+    const serviceID = "service_wly68fi";
+    const templateID = "template_8gdpya7";
+
+    const templateParams = {
+      fullname: form.querySelector('[name="fullname"]')?.value?.trim() ?? "",
+      email: form.querySelector('[name="email"]')?.value?.trim() ?? "",
+      phone: form.querySelector('[name="phone"]')?.value?.trim() ?? "",
+      subject: form.querySelector('[name="subject"]')?.value ?? "General",
+      message: form.querySelector('[name="message"]')?.value?.trim() ?? "",
+      time: new Date().toLocaleString()
+    };
+
+    try {
+      // Fallback safely to window.emailjs if globalThis doesn't recognize it
+    const emailJSInstance = globalThis.emailjs || window.emailjs;
+    
+      if (!emailJSInstance) {
+        throw new Error("EmailJS SDK is completely missing from the window object. Check your script tag.");
+      }
+
+      // Use the resolved instance to send
+      const response = await emailJSInstance.send(serviceID, templateID, templateParams);
+      console.log("EmailJS Success Response:", response);
+      return { success: true, response };
+    } catch (error) {
+      // Changed to console.error so it shows up bright red in your DevTools
+      console.error("EmailJS send failed heavily:", error);
+      return { success: false, error };
+    }
+};
+
+  // =========================================================================
+  // AJAX FORM SUBMISSION — uses fetch() to submit asynchronously
+  // =========================================================================
+  const submitFormViaAjax = async (form) => {
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      // Attempt async submission to a mock endpoint (works with services like Formspree/EmailJS)
+      const response = await fetch("https://httpbin.org/post", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+
+      return { success: true };
+    } catch (error) {
+      // Graceful fallback — log locally if network request fails
+      console.warn("AJAX submission failed, using local fallback.", error);
+      return { success: false, error };
+    }
+  };
+
   const initFormEnhancements = () => {
     const forms = document.querySelectorAll("form.form");
 
@@ -1230,7 +1443,7 @@
         renderSubmissionLog(form, loadSubmissionLog());
       }
 
-      form.addEventListener("submit", (event) => {
+      form.addEventListener("submit", async (event) => {
         clearAllFieldErrors(form);
         const firstInvalidField = validateFormFields(form);
 
@@ -1240,29 +1453,67 @@
             statusNode.textContent = "Please complete all required fields correctly.";
             statusNode.classList.add("is-error");
           }
+          showSnackbar("Please fix the errors in the form.", "error");
           firstInvalidField.focus();
           return;
         }
 
         if (statusNode) {
-          statusNode.textContent = "Looks good. Submitting your form...";
+          statusNode.textContent = "Submitting your form...";
           statusNode.classList.remove("is-error");
         }
 
         if (shouldSubmitLocally(form)) {
           event.preventDefault();
 
+          // Determine which form we are handling
+          const isEnquiryForm = form.id === "enquiry-form";
+          const isContactForm = form.id === "contact-form";
+
+          // AJAX submission (asynchronous fetch)
+          const ajaxResult = await submitFormViaAjax(form);
+
+          // Log submission locally regardless of AJAX outcome
           if (isSubmissionLoggingEnabled(form)) {
             const record = buildSubmissionRecord(form);
             const updatedLog = appendSubmissionRecord(record);
             renderSubmissionLog(form, updatedLog);
           }
 
+          // Form-specific post-submission behaviour
+          if (isEnquiryForm) {
+            // Show contextual response based on enquiry type (cost, availability, etc.)
+            showEnquiryResponse(form);
+            showSnackbar("Enquiry submitted successfully!", "success");
+          }
+
+          if (isContactForm) {
+            // Show loading spinner while email sends
+            const loader = showFormLoader(form, "Sending your message...");
+
+            // Send email via EmailJS
+            const emailResult = await sendContactEmail(form);
+
+            // Remove loader
+            hideFormLoader(form);
+
+            if (emailResult.success) {
+              showSnackbar("Email sent successfully! Our team will contact you shortly.", "success", 5000);
+            } else {
+              showSnackbar("Message saved locally. Email delivery may be delayed.", "redirect", 5000);
+            }
+          }
+
           form.reset();
           clearAllFieldErrors(form);
           refreshCounters(form);
+
           if (statusNode) {
-            statusNode.textContent = "Thanks, your message has been captured.";
+            if (isContactForm) {
+              statusNode.textContent = "Your message has been sent to our team.";
+            } else {
+              statusNode.textContent = "Thanks! Your enquiry has been submitted successfully.";
+            }
             statusNode.classList.remove("is-error");
           }
         }
@@ -1271,6 +1522,12 @@
       form.addEventListener("reset", () => {
         clearAllFieldErrors(form);
         refreshCounters(form);
+
+        // Remove any enquiry response panel
+        const existingResponse = form.parentElement?.querySelector(".enquiry-response");
+        if (existingResponse) {
+          existingResponse.remove();
+        }
 
         if (statusNode) {
           statusNode.textContent = "";

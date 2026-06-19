@@ -17,10 +17,30 @@ This repository contains the Safe Paws pet adoption website developed for a scho
 - Part 2 Due Date: 29 May 2026
 - POE Due Date: 19 June 2026
 
-Current status: Part 1 implementation (HTML-only foundation, no CSS and no JavaScript).
+Current status: Part 3 implementation (JavaScript enhancements, SEO, form validation, AJAX submission, and deployment).
 
 ## ChangeLog 
 Find the changelog here: [release](https://github.com/MamaboloGtub/safe-paws/releases)
+
+### Part 3 Changelog (Enhancing Functionality and SEO)
+
+| Date | Change | Details |
+|------|--------|---------|
+| 2026-06-19 | JavaScript interactive elements | Added tab navigation (index.html featured animals, about.html explore tabs) with full keyboard accessibility (ArrowLeft/Right, Home, End). Implemented FAQ accordion behaviour that auto-closes sibling items when one opens. |
+| 2026-06-19 | Modals and lightbox gallery | Built Quick View modal for adoption pet cards and "See More Pets" paginated gallery modal with 30 extra images across dogs, cats, and rabbits. Both modals support Escape key close and backdrop click. |
+| 2026-06-19 | Interactive Leaflet map | Integrated Leaflet.js on contact.html to display Safe Paws location in Polokwane. Map lazy-loads via IntersectionObserver for page speed optimisation. |
+| 2026-06-19 | CSS and JS animations | Added scroll-reveal animations using IntersectionObserver, CSS keyframe slideshow on homepage, hover transitions on cards, and FAQ summary nudge animation. All animations respect prefers-reduced-motion. |
+| 2026-06-19 | Dynamic pet directory | Built JavaScript-powered pet listing on adoption.html with real-time search (by name, breed, description), type filtering (dogs/cats/rabbits), and sorting (name A-Z/Z-A, age youngest/oldest). |
+| 2026-06-19 | Enquiry form contextual response | After validation, enquiry form now displays a relevant response panel showing adoption fees, availability, volunteer schedules, or other details based on the selected enquiry type. |
+| 2026-06-19 | Contact form mailto compilation | Contact form now compiles validated input into a pre-filled mailto link (recipient, subject, body) and opens the user's email client to send the message. |
+| 2026-06-19 | AJAX form submission | All forms now use fetch() to submit data asynchronously to a mock endpoint (httpbin.org/post). If the network request fails, submissions fall back to localStorage logging gracefully. |
+| 2026-06-19 | JavaScript form validation | Implemented comprehensive client-side validation: custom error messages per field, field-level aria-live error display, conditional validation (animal name required when enquiry type is "animal"), character counters on textareas, and real-time error clearing on input. |
+| 2026-06-19 | SEO — meta tags and keywords | Added unique title tags, meta descriptions, and meta keywords to all 6 pages. Added canonical URLs, robots meta directives, and referrer policy headers. |
+| 2026-06-19 | SEO — robots.txt and sitemap.xml | Created robots.txt allowing all crawlers with sitemap reference. Created sitemap.xml listing all 7 URLs with priority and change frequency. |
+| 2026-06-19 | SEO — image optimisation | All images use descriptive alt text, explicit width/height attributes, lazy loading, and async decoding for performance. |
+| 2026-06-19 | SEO — page speed | Implemented deferred script loading, IntersectionObserver for lazy map init, force-cache on component fetches, and CSS containment via grid layout. |
+| 2026-06-19 | Responsive design | Full mobile responsiveness with grid layout collapsing at 768px and 480px breakpoints. Navbar, forms, cards, and tabs all adapt to small screens. |
+| 2026-06-19 | Deployment | Website deployed on GitHub Pages at https://mamabologtub.github.io/safe-paws/ |
 
 ## References
 
@@ -39,6 +59,31 @@ Part 2 and POE planning details were moved into dedicated documents:
 
 - [Part 2 Scope and Targets](PART2.md)
 - [Full Project Plan (Part 1 + Part 2 + POE)](PROJECT_PLAN.md)
+
+## Part 3 — Enhancing Functionality and SEO
+
+### JavaScript Features
+- **Interactive Tabs** — Featured animals (index.html) and About page with full keyboard navigation
+- **FAQ Accordion** — Auto-closing sibling items using `details`/`summary` with JS enhancement
+- **Modals** — Quick View lightbox for pet cards and paginated "See More Pets" gallery (30 images)
+- **Interactive Map** — Leaflet.js on contact page showing Polokwane location, lazy-loaded
+- **Dynamic Pet Directory** — JS-rendered pet cards with real-time search, filter by type, sort by name/age
+- **Animations** — Scroll-reveal (IntersectionObserver), CSS keyframe slideshow, hover transitions
+- **Form Validation** — Client-side validation with custom error messages, conditional fields, character counters
+- **AJAX Submission** — Forms submit asynchronously via `fetch()` with localStorage fallback
+- **Enquiry Response** — Contextual response panel showing fees, availability, or schedules based on enquiry type
+- **Contact Mailto** — Form data compiled into a pre-filled `mailto:` link opening the user's email client
+
+### SEO Features
+- Unique title tags and meta descriptions per page
+- Meta keywords, canonical URLs, robots directives
+- robots.txt and sitemap.xml
+- Descriptive image alt text and filenames
+- Lazy loading, deferred scripts, IntersectionObserver for performance
+- Responsive design (768px and 480px breakpoints)
+
+### Deployment
+- GitHub Pages: https://mamabologtub.github.io/safe-paws/
 
 ## Project Structure
 
