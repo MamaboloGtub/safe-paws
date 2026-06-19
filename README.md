@@ -14,13 +14,15 @@ School Portfolio of Evidence Website Project
 This repository contains the Safe Paws pet adoption website developed for a school assignment.
 
 - ~~Part 1 Due Date: 28 April 2026~~
-- Part 2 Due Date: 29 May 2026
-- POE Due Date: 19 June 2026
+- ~~Part 2 Due Date: 29 May 2026~~
+- ~~POE Due Date: 19 June 2026~~
 
 Current status: Part 3 implementation (JavaScript enhancements, SEO, form validation, AJAX submission, and deployment).
 
 ## ChangeLog 
 Find the changelog here: [release](https://github.com/MamaboloGtub/safe-paws/releases)
+
+Find the detailed changelog below to compensate for the ones on GitHub
 
 ### Part 3 Changelog (Enhancing Functionality and SEO)
 
@@ -31,12 +33,12 @@ Find the changelog here: [release](https://github.com/MamaboloGtub/safe-paws/rel
 | 2026-06-19 | Interactive Leaflet map | Integrated Leaflet.js on contact.html to display Safe Paws location in Polokwane. Map lazy-loads via IntersectionObserver for page speed optimisation. |
 | 2026-06-19 | CSS and JS animations | Added scroll-reveal animations using IntersectionObserver, CSS keyframe slideshow on homepage, hover transitions on cards, and FAQ summary nudge animation. All animations respect prefers-reduced-motion. |
 | 2026-06-19 | Dynamic pet directory | Built JavaScript-powered pet listing on adoption.html with real-time search (by name, breed, description), type filtering (dogs/cats/rabbits), and sorting (name A-Z/Z-A, age youngest/oldest). |
-| 2026-06-19 | Enquiry form contextual response | After validation, enquiry form now displays a relevant response panel showing adoption fees, availability, volunteer schedules, or other details based on the selected enquiry type. |
+| 2026-06-19 | Enquiry form contextual response | After validation, the enquiry form now displays a relevant response panel showing adoption fees, availability, volunteer schedules, or other details based on the selected enquiry type. |
 | 2026-06-19 | Contact form mailto compilation | Contact form now compiles validated input into a pre-filled mailto link (recipient, subject, body) and opens the user's email client to send the message. |
-| 2026-06-19 | AJAX form submission | All forms now use fetch() to submit data asynchronously to a mock endpoint (httpbin.org/post). If the network request fails, submissions fall back to localStorage logging gracefully. |
+| 2026-06-19 | AJAX form submission | All forms now use fetch() to submit data asynchronously to a mock endpoint (httpbin.org/post). If the network request fails, submissions fall back to localStorage, logging gracefully. |
 | 2026-06-19 | JavaScript form validation | Implemented comprehensive client-side validation: custom error messages per field, field-level aria-live error display, conditional validation (animal name required when enquiry type is "animal"), character counters on textareas, and real-time error clearing on input. |
 | 2026-06-19 | SEO — meta tags and keywords | Added unique title tags, meta descriptions, and meta keywords to all 6 pages. Added canonical URLs, robots meta directives, and referrer policy headers. |
-| 2026-06-19 | SEO — robots.txt and sitemap.xml | Created robots.txt allowing all crawlers with sitemap reference. Created sitemap.xml listing all 7 URLs with priority and change frequency. |
+| 2026-06-19 | SEO — robots.txt and sitemap.xml | Created robots.txt, allowing all crawlers with a sitemap reference. Created sitemap.xml listing all 7 URLs with priority and change frequency. |
 | 2026-06-19 | SEO — image optimisation | All images use descriptive alt text, explicit width/height attributes, lazy loading, and async decoding for performance. |
 | 2026-06-19 | SEO — page speed | Implemented deferred script loading, IntersectionObserver for lazy map init, force-cache on component fetches, and CSS containment via grid layout. |
 | 2026-06-19 | Responsive design | Full mobile responsiveness with grid layout collapsing at 768px and 480px breakpoints. Navbar, forms, cards, and tabs all adapt to small screens. |
@@ -121,7 +123,7 @@ View them in part 2 or follow the link below
 ## How to Run Locally
 
 1. Open the project folder in VS Code.
-2. Open `index.html` in your browser. (When using the vsCode, you can right-click on the `index.html` file and select Open with Live Server).
+2. Open `index.html` in your browser. (When using VSCode, you can right-click on the `index.html` file and select Open with Live Server).
 3. Navigate through the site using the page links.
 
 ## Publish on GitHub Pages
